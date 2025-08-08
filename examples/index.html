@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Démonstration Widget TrustedX</title>
+    <link rel="stylesheet" href="../dist/trustedx-widget.css" />
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .demo-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      .demo-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        width: 100%;
+        max-width: 450px;
+      }
+
+      h2 {
+        color: #2c3e50;
+        margin-top: 0;
+      }
+
+      .token-display {
+        background: #f8f9fa;
+        border-radius: 4px;
+        padding: 15px;
+        margin-top: 20px;
+        overflow-wrap: break-word;
+        font-family: monospace;
+        font-size: 0.85em;
+        max-height: 200px;
+        overflow-y: auto;
+        display: none;
+      }
+
+      pre {
+        white-space: pre-wrap;
+        margin: 0;
+      }
+
+      .tab-container {
+        margin-top: 20px;
+      }
+
+      .tab-buttons {
+        display: flex;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 15px;
+      }
+
+      .tab-btn {
+        padding: 8px 15px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-bottom: 2px solid transparent;
+      }
+
+      .tab-btn.active {
+        border-bottom: 2px solid #0066cc;
+        font-weight: bold;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .config-form {
+        margin-top: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .btn {
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #0052a3;
+      }
+
+      .btn-secondary {
+        background-color: #6c757d;
+      }
+
+      .btn-secondary:hover {
+        background-color: #5a6268;
+      }
+
+      /* Nouveaux styles pour le sélecteur d'environnement */
+      .env-selector {
+        margin-bottom: 15px;
+        padding: 10px;
+        background: #f5f5f5;
+        border-radius: 4px;
+        display: flex;
+        gap: 15px;
+      }
+
+      .env-selector label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+      }
+
+      .env-selector input[type="radio"] {
+        margin: 0;
+      }
+
+      .env-badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 0.8em;
+        font-weight: bold;
+        margin-left: 5px;
+      }
+
+      .env-test {
+        background-color: #ff9800;
+        color: white;
+      }
+
+      .env-production {
+        background-color: #4caf50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Démonstration du Widget TrustedX</h1>
+      <p>
+        Intégration facile d'authentification sécurisée dans vos applications
+      </p>
+    </header>
+
+    <div class="demo-container">
+      <!-- Cas d'usage 1 : Intégration de base -->
+      <div class="demo-card">
+        <h2>Cas d'usage 1 : Intégration de base</h2>
+        <p>Ce cas d'usage montre comment initialiser un widget avec des paramètres par défaut pour un environnement de test.</p>
+
+        <!-- Conteneur du widget -->
+        <div id="trustedx-auth-basic"></div>
+
+        <button id="init-basic-btn" class="btn">Initialiser le Widget de Base</button>
+
+        <div class="token-display" id="basic-token">
+          <pre></pre>
+        </div>
+      </div>
+
+      <!-- Cas d'usage 2 : Configuration avancée -->
+      <div class="demo-card">
+        <h2>Cas d'usage 2 : Configuration avancée</h2>
+        <p>Personnalisez les paramètres du widget selon vos besoins, comme l'environnement, le client ID, et la couleur principale.</p>
+
+        <div class="config-form">
+          <div class="form-group">
+            <label>Environnement :</label>
+            <div class="env-selector">
+              <label>
+                <input type="radio" name="environment" value="test" checked />
+                Test <span class="env-badge env-test">TEST</span>
+              </label>
+              <label>
+                <input type="radio" name="environment" value="production" />
+                Production <span class="env-badge env-production">PROD</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="client-id">Client ID :</label>
+            <input type="text" id="client-id" value="demo-app-client" />
+          </div>
+
+          <div class="form-group">
+            <label for="auth-server">Auth Server (optionnel) :</label>
+            <input type="text" id="auth-server" placeholder="Laisser vide pour valeur par défaut" />
+          </div>
+
+          <div class="form-group">
+            <label for="scope">Scope :</label>
+            <input type="text" id="scope" value="openid profile email" />
+          </div>
+
+          <div class="form-group">
+            <label for="primary-color">Couleur principale :</label>
+            <input type="text" id="primary-color" value="#0066cc" />
+          </div>
+
+          <div class="form-group">
+            <label for="be-url">Backend URL (beUrl) :</label>
+            <input type="text" id="be-url" placeholder="https://example.com/api/v1/code-exchange" />
+          </div>
+
+          <div class="form-group">
+            <label for="be-bearer">Backend Bearer Token (beBearer) :</label>
+            <input type="text" id="be-bearer" placeholder="Bearer token" />
+          </div>
+
+          <button id="init-advanced-btn" class="btn">Initialiser le Widget Avancé</button>
+        </div>
+
+        <!-- Conteneur du widget avancé -->
+        <div id="trustedx-auth-advanced"></div>
+
+        <div class="token-display" id="advanced-token">
+          <pre></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="demo-card" style="max-width: 900px; margin: 40px auto">
+      <h2>Intégration déclarative (HTML seule)</h2>
+      <p>Utilisation sans JavaScript grâce à l'auto-initialisation :</p>
+
+      <div class="tab-container">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="demo">Démo</button>
+          <button class="tab-btn" data-tab="declarative-code">Code</button>
+        </div>
+
+        <div class="tab-content active" id="demo-tab">
+          <div
+            id="trustedx-auth-declarative"
+            data-trustedx-widget='{
+              "environment": "test",
+              "clientId": "declarative-demo",
+              "scope": "openid profile",
+              "ui": {
+                "primaryColor": "#28a745",
+                "showEnvSelector": true
+              }
+            }'
+          ></div>
+
+          <div class="token-display" id="declarative-token">
+            <pre></pre>
+          </div>
+        </div>
+
+        <div class="tab-content" id="declarative-code-tab">
+          <pre><code>&lt;div id="trustedx-auth-declarative" 
+     data-trustedx-widget='{
+         "environment": "test",
+         "clientId": "declarative-demo",
+         "scope": "openid profile",
+         "ui": {
+             "primaryColor": "#28a745",
+             "showEnvSelector": true
+         }
+     }'&gt;&lt;/div&gt;
+
+&lt;script src="trustedx-widget.min.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+    </div> -->
+
+    <script src="../dist/trustedx-widget.min.js"></script>
+    <script>
+      // Configuration des environnements
+      const ENVIRONMENTS = {
+        test: {
+          baseUrl: "https://test.trustedx.example.com",
+          authServer: "test-server",
+          description: "Environnement de test (sandbox)",
+        },
+        production: {
+          baseUrl: "https://trustedx.example.com",
+          authServer: "production-server",
+          description: "Environnement de production",
+        },
+      };
+
+      // Gestion des onglets
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const tabId = btn.getAttribute("data-tab");
+          const container = btn.closest(".tab-container");
+
+          // Désactive tous les onglets
+          container
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
+          container
+            .querySelectorAll(".tab-content")
+            .forEach((c) => c.classList.remove("active"));
+
+          // Active l'onglet sélectionné
+          btn.classList.add("active");
+          document.getElementById(`${tabId}-tab`).classList.add("active");
+        });
+      });
+
+      // Fonction pour afficher les tokens
+      const displayToken = (containerId, tokenData) => {
+        const container = document.getElementById(containerId);
+        const pre = container.querySelector("pre");
+
+        pre.textContent = JSON.stringify(tokenData, null, 2);
+        container.style.display = "block";
+      };
+
+      // Cas d'usage 1 : Initialisation du widget de base
+      document.getElementById("init-basic-btn").addEventListener("click", () => {
+        new TrustedXAuthWidget({
+          environment: "test",
+          clientId: "demo-basic-client",
+          scope: "openid profile",
+          ui: {
+            container: "#trustedx-auth-basic",
+            language: "fr",
+          },
+          onSuccess: (token) => {
+            displayToken("basic-token", token);
+            console.log("Succès du widget de base :", token);
+          },
+          onError: (error) => {
+            console.error("Erreur du widget de base :", error);
+          },
+        });
+      });
+
+      // Cas d'usage 2 : Initialisation du widget avancé
+      document.getElementById("init-advanced-btn").addEventListener("click", () => {
+        const environment = document.querySelector('input[name="environment"]:checked').value;
+        const clientId = document.getElementById("client-id").value;
+        const authServer = document.getElementById("auth-server").value;
+        const scope = document.getElementById("scope").value;
+        const primaryColor = document.getElementById("primary-color").value;
+        const beUrl = document.getElementById("be-url").value;
+        const beBearer = document.getElementById("be-bearer").value;
+
+        // Vérifiez que le conteneur existe
+        const container = document.querySelector("#trustedx-auth-advanced");
+        if (!container) {
+          console.error("Le conteneur #trustedx-auth-advanced est introuvable.");
+          return;
+        }
+
+        // Configuration du widget
+        const config = {
+          environment: environment,
+          clientId: clientId,
+          authServer: authServer || undefined,
+          scope: scope,
+          beUrl: beUrl,
+          beBearer: beBearer,
+          ui: {
+            container: "#trustedx-auth-advanced",
+            primaryColor: primaryColor,
+            language: "fr",
+          },
+          onSuccess: (token) => {
+            displayToken("advanced-token", token);
+            console.log("Succès du widget avancé :", token);
+          },
+          onError: (error) => {
+            console.error("Erreur du widget avancé :", error);
+          },
+        };
+
+        // Initialisation du widget
+        try {
+          new TrustedXAuthWidget(config);
+        } catch (error) {
+          console.error("Erreur lors de l'initialisation du widget :", error);
+        }
+      });
+
+      // Gestion du widget déclaratif
+      document.addEventListener("trustedx-auth-success", (e) => {
+        if (e.detail.containerId === "trustedx-auth-declarative") {
+          displayToken("declarative-token", e.detail.token);
+          console.log("Declarative widget success:", e.detail.token);
+        }
+      });
+
+      document.addEventListener("trustedx-auth-error", (e) => {
+        if (e.detail.containerId === "trustedx-auth-declarative") {
+          console.error("Declarative widget error:", e.detail.error);
+        }
+      });
+    </script>
+  </body>
+</html>

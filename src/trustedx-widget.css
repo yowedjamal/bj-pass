@@ -1,0 +1,72 @@
+.trustedx-widget {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.trustedx-widget button {
+  background-color: var(--tx-primary-color, #0066cc);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.trustedx-widget button:hover {
+  background-color: var(--tx-primary-hover, #0052a3);
+}
+
+.widget-loading {
+  text-align: center;
+  padding: 20px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid var(--tx-primary-color, #0066cc);
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.widget-error {
+  color: #d32f2f;
+  padding: 10px;
+  background-color: #fdecea;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+.env-selector {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    display: flex;
+    gap: 15px;
+}
+
+.env-selector label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.env-selector input[type="radio"] {
+    margin: 0;
+}

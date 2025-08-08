@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authentification TrustedX</title>
+    <script>
+        // Envoie les paramètres d'authentification à la fenêtre parente
+        window.onload = function() {
+            if (window.opener) {
+                window.opener.postMessage({
+                    type: 'trustedx-auth-response',
+                    query: window.location.search
+                }, window.location.origin);
+                window.close();
+            }
+        };
+    </script>
+</head>
+<body>
+    <p>Transfert en cours, veuillez patienter...</p>
+</body>
+</html>

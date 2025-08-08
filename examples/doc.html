@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustedX Authentication Widget Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #3b82f6 #f1f5f9;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #3b82f6;
+            border-radius: 3px;
+        }
+        pre {
+            border-radius: 0.5rem;
+            padding: 1rem;
+            background: #1e293b !important;
+        }
+        .method {
+            border-left: 4px solid #3b82f6;
+        }
+        .param-name {
+            min-width: 150px;
+        }
+        .feature-card {
+            border-left: 4px solid #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <div class="sidebar w-64 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto">
+        <div class="p-4 border-b border-gray-200">
+            <h1 class="text-xl font-bold text-blue-600">TrustedX Auth</h1>
+            <p class="text-sm text-gray-500">Documentation v2.0</p>
+        </div>
+        
+        <nav class="flex-1 p-4">
+            <div class="mb-6">
+                <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Introduction</h2>
+                <ul>
+                    <li><a href="#introduction" class="block py-1 text-blue-600 hover:text-blue-800">Overview</a></li>
+                    <li><a href="#features" class="block py-1 text-gray-600 hover:text-blue-600">Features</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Getting Started</h2>
+                <ul>
+                    <li><a href="#installation" class="block py-1 text-gray-600 hover:text-blue-600">Installation</a></li>
+                    <li><a href="#basic-usage" class="block py-1 text-gray-600 hover:text-blue-600">Basic Usage</a></li>
+                    <li><a href="#configuration" class="block py-1 text-gray-600 hover:text-blue-600">Configuration</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">API Reference</h2>
+                <ul>
+                    <li><a href="#api-reference" class="block py-1 text-gray-600 hover:text-blue-600">Core API</a></li>
+                    <li><a href="#enhanced-api" class="block py-1 text-gray-600 hover:text-blue-600">Enhanced API</a></li>
+                    <li><a href="#factory-api" class="block py-1 text-gray-600 hover:text-blue-600">Factory API</a></li>
+                    <li><a href="#hooks" class="block py-1 text-gray-600 hover:text-blue-600">Hooks System</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Advanced</h2>
+                <ul>
+                    <li><a href="#plugins" class="block py-1 text-gray-600 hover:text-blue-600">Plugins</a></li>
+                    <li><a href="#error-handling" class="block py-1 text-gray-600 hover:text-blue-600">Error Handling</a></li>
+                    <li><a href="#examples" class="block py-1 text-gray-600 hover:text-blue-600">Examples</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Additional Info</h2>
+                <ul>
+                    <li><a href="#compatibility" class="block py-1 text-gray-600 hover:text-blue-600">Compatibility</a></li>
+                    <li><a href="#security" class="block py-1 text-gray-600 hover:text-blue-600">Security</a></li>
+                    <li><a href="#troubleshooting" class="block py-1 text-gray-600 hover:text-blue-600">Troubleshooting</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="p-4 border-t border-gray-200 text-xs text-gray-500">
+            <p>© 2023 TrustedX</p>
+            <p>Version 2.0.0</p>
+        </div>
+    </div>
+    
+    <!-- Main content -->
+    <div class="flex-1 overflow-y-auto">
+        <div class="max-w-4xl mx-auto px-6 py-8">
+            <!-- Introduction -->
+            <section id="introduction" class="mb-12">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">TrustedX Authentication Widget</h1>
+                <p class="text-lg text-gray-600 mb-6">A modular JavaScript component for OAuth 2.0/OpenID Connect authentication with TrustedX services.</p>
+                
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Introduction</h2>
+                    <p class="mb-4">The TrustedX Authentication Widget provides secure authentication capabilities with support for both direct token exchange and backend-mediated flows, featuring PKCE security and comprehensive error handling.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <div class="bg-blue-50 border border-blue-100 rounded-lg p-4">
+                            <h3 class="font-semibold text-blue-800 mb-2">Key Benefits</h3>
+                            <ul class="list-disc pl-5 text-blue-700">
+                                <li class="mb-1">Secure authentication with PKCE</li>
+                                <li class="mb-1">Multiple environment support</li>
+                                <li class="mb-1">Extensible plugin architecture</li>
+                                <li>Comprehensive error handling</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 border border-green-100 rounded-lg p-4">
+                            <h3 class="font-semibold text-green-800 mb-2">Quick Start</h3>
+                            <pre class="text-sm"><code class="language-javascript">const widget = new TrustedXAuthWidget({
+  clientId: "your-client-id",
+  onSuccess: (tokens) => {
+    console.log("Authenticated!", tokens);
+  }
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Features -->
+            <section id="features" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Core Features</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="feature-card bg-gray-50 p-4 rounded">
+                            <h4 class="font-semibold text-blue-600 mb-2">Multiple Environments</h4>
+                            <p class="text-gray-700">Pre-configured support for test and production environments with easy switching.</p>
+                        </div>
+                        
+                        <div class="feature-card bg-gray-50 p-4 rounded">
+                            <h4 class="font-semibold text-blue-600 mb-2">PKCE Security</h4>
+                            <p class="text-gray-700">Proof Key for Code Exchange (PKCE) implemented for enhanced security.</p>
+                        </div>
+                        
+                        <div class="feature-card bg-gray-50 p-4 rounded">
+                            <h4 class="font-semibold text-blue-600 mb-2">Token Validation</h4>
+                            <p class="text-gray-700">Comprehensive JWT validation including signature verification.</p>
+                        </div>
+                        
+                        <div class="feature-card bg-gray-50 p-4 rounded">
+                            <h4 class="font-semibold text-blue-600 mb-2">UI Components</h4>
+                            <p class="text-gray-700">Customizable UI with environment selector, login button, and error display.</p>
+                        </div>
+                        
+                        <div class="feature-card bg-gray-50 p-4 rounded">
+                            <h4 class="font-semibold text-blue-600 mb-2">Popup Management</h4>
+                            <p class="text-gray-700">Secure popup window handling for authentication flows.</p>
+                        </div>
+                        
+                        <div class="feature-card bg-gray-50 p-4 rounded">
+                            <h4 class="font-semibold text-blue-600 mb-2">Error Handling</h4>
+                            <p class="text-gray-700">Comprehensive error handling with user-friendly messages.</p>
+                        </div>
+                        
+                        <div class="feature-card bg-gray-50 p-4 rounded">
+                            <h4 class="font-semibold text-blue-600 mb-2">Plugin System</h4>
+                            <p class="text-gray-700">Extensible architecture with built-in plugins for analytics, debugging, and retry logic.</p>
+                        </div>
+                        
+                        <div class="feature-card bg-gray-50 p-4 rounded">
+                            <h4 class="font-semibold text-blue-600 mb-2">Factory Pattern</h4>
+                            <p class="text-gray-700">Widget creation factory with theme support (default, dark, modern, minimal).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Installation -->
+            <section id="installation" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Installation</h2>
+                    
+                    <h3 class="text-xl font-medium text-gray-700 mb-3">CDN</h3>
+                    <p class="mb-4">Include the widget script in your HTML:</p>
+                    <pre class="mb-6"><code class="language-html">&lt;script src="https://cdn.yourdomain.com/trustedx-widget.js"&gt;&lt;/script&gt;</code></pre>
+                    
+                    <h3 class="text-xl font-medium text-gray-700 mb-3">NPM</h3>
+                    <p class="mb-4">Install via npm:</p>
+                    <pre class="mb-6"><code class="language-bash">npm install @trustedx/auth-widget</code></pre>
+                    
+                    <h3 class="text-xl font-medium text-gray-700 mb-3">Auto-initialization</h3>
+                    <p class="mb-4">Use data attributes for auto-initialization:</p>
+                    <pre class="mb-2"><code class="language-html">&lt;div id="auth-container" 
+     data-trustedx-widget='{"clientId":"your-client-id"}'&gt;
+&lt;/div&gt;</code></pre>
+                    <p class="text-sm text-gray-500 mt-2">Note: Ensure the widget script is loaded after the DOM element.</p>
+                </div>
+            </section>
+            
+            <!-- Basic Usage -->
+            <section id="basic-usage" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Basic Usage</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-medium text-gray-700 mb-3">Simple Initialization</h3>
+                        <pre><code class="language-javascript">// Basic initialization
+const widget = new TrustedXAuthWidget({
+    clientId: "your-client-id",
+    environment: "test", // or "production"
+    ui: {
+        container: "#auth-container",
+        primaryColor: "#0066cc",
+        language: "fr" // or "en"
+    },
+    onSuccess: (tokens) => {
+        console.log("Authentication successful!", tokens);
+        // Handle successful authentication
+    },
+    onError: (error) => {
+        console.error("Authentication failed:", error);
+        // Handle authentication errors
+    }
+});</code></pre>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-medium text-gray-700 mb-3">Using the Enhanced Widget</h3>
+                        <pre><code class="language-javascript">// Enhanced widget with plugins
+const enhancedWidget = new EnhancedTrustedXAuthWidget({
+    clientId: "your-client-id",
+    debug: true,
+    analytics: true,
+    maxRetries: 3,
+    onSuccess: (tokens) => {
+        // Handle tokens
+    }
+});</code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Configuration -->
+            <section id="configuration" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Configuration Options</h2>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Parameter</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Default</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">clientId</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Required</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Your OAuth client ID</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">environment</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">"test"</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Environment to use ("test" or "production")</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">authServer</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">"main-as"</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Authentication server to use</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">scope</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">"openid profile"</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Space-separated list of scopes</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">redirectUri</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">window.location.origin + "/examples/redirect.html"</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">OAuth redirect URI</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">pkce</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Boolean</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Enable PKCE security</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">verifyAccessToken</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Boolean</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Enable access token verification</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">beUrl</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">""</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Backend URL for code exchange</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">beBearer</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">""</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Bearer token for backend API</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">ui.showEnvSelector</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Boolean</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">true</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Show environment selector</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">ui.container</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">"#trustedx-auth-container"</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">DOM element selector for widget</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">ui.language</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">"fr"</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">UI language ("fr" or "en")</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">ui.primaryColor</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">"#0066cc"</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Primary color for UI elements</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">ui.theme</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">String</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">"default"</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">UI theme ("default", "dark", "modern", "minimal")</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onSuccess</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Function</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Callback for successful authentication</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">onError</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Function</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">null</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Callback for authentication errors</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">debug</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Boolean</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Enable debug mode</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">analytics</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Boolean</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">false</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Enable analytics plugin</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">maxRetries</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Number</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Max retry attempts for token exchange</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">retryDelay</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Number</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1000</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Delay between retries in milliseconds</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- API Reference -->
+            <section id="api-reference" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">API Reference</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">TrustedXAuthWidget</h3>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">constructor(config)</h4>
+                        <p class="text-gray-700 mb-3">Creates a new TrustedXAuthWidget instance.</p>
+                        <div class="method-params bg-white p-3 rounded border border-gray-200 mb-3">
+                            <div class="param flex mb-1">
+                                <div class="param-name font-medium">config</div>
+                                <div class="param-desc text-gray-600">Configuration object (see above)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">startAuthFlow()</h4>
+                        <p class="text-gray-700">Initiates the authentication flow by opening the authorization popup.</p>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">destroy()</h4>
+                        <p class="text-gray-700">Cleans up the widget, removing all event listeners and DOM elements.</p>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">refresh()</h4>
+                        <p class="text-gray-700">Reinitializes the widget UI while maintaining configuration.</p>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">getConfig()</h4>
+                        <p class="text-gray-700 mb-2">Returns the current configuration object.</p>
+                        <p class="text-sm font-medium text-gray-600">Returns: <span class="text-gray-700">Object - Current configuration</span></p>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-6">
+                        <h4 class="font-semibold text-blue-600 mb-2">updateConfig(newConfig)</h4>
+                        <p class="text-gray-700 mb-3">Updates the widget configuration.</p>
+                        <div class="method-params bg-white p-3 rounded border border-gray-200 mb-3">
+                            <div class="param flex mb-1">
+                                <div class="param-name font-medium">newConfig</div>
+                                <div class="param-desc text-gray-600">Partial configuration object with updates</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 id="enhanced-api" class="text-xl font-semibold text-gray-700 mb-3">EnhancedTrustedXAuthWidget</h3>
+                    <p class="text-gray-600 mb-4">Extends TrustedXAuthWidget with plugin and hook support.</p>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">use(name, plugin)</h4>
+                        <p class="text-gray-700 mb-3">Registers a plugin with the widget.</p>
+                        <div class="method-params bg-white p-3 rounded border border-gray-200 mb-3">
+                            <div class="param flex mb-1">
+                                <div class="param-name font-medium">name</div>
+                                <div class="param-desc text-gray-600">Plugin name</div>
+                            </div>
+                            <div class="param flex">
+                                <div class="param-name font-medium">plugin</div>
+                                <div class="param-desc text-gray-600">Plugin instance with init() method</div>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-600">Returns: <span class="text-gray-700">this - For method chaining</span></p>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">unuse(name)</h4>
+                        <p class="text-gray-700 mb-3">Unregisters a plugin from the widget.</p>
+                        <div class="method-params bg-white p-3 rounded border border-gray-200 mb-3">
+                            <div class="param flex">
+                                <div class="param-name font-medium">name</div>
+                                <div class="param-desc text-gray-600">Plugin name to remove</div>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-600">Returns: <span class="text-gray-700">this - For method chaining</span></p>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">getPlugin(name)</h4>
+                        <p class="text-gray-700 mb-3">Gets a registered plugin instance.</p>
+                        <div class="method-params bg-white p-3 rounded border border-gray-200 mb-3">
+                            <div class="param flex">
+                                <div class="param-name font-medium">name</div>
+                                <div class="param-desc text-gray-600">Plugin name</div>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-600">Returns: <span class="text-gray-700">Plugin - The plugin instance</span></p>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-6">
+                        <h4 class="font-semibold text-blue-600 mb-2">addHook(hookName, callback)</h4>
+                        <p class="text-gray-700 mb-3">Adds a hook callback for a specific event.</p>
+                        <div class="method-params bg-white p-3 rounded border border-gray-200 mb-3">
+                            <div class="param flex mb-1">
+                                <div class="param-name font-medium">hookName</div>
+                                <div class="param-desc text-gray-600">Hook event name</div>
+                            </div>
+                            <div class="param flex">
+                                <div class="param-name font-medium">callback</div>
+                                <div class="param-desc text-gray-600">Function to call when hook is triggered</div>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-600">Returns: <span class="text-gray-700">this - For method chaining</span></p>
+                    </div>
+                    
+                    <h3 id="factory-api" class="text-xl font-semibold text-gray-700 mb-3">TrustedXWidgetFactory</h3>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">create(config)</h4>
+                        <p class="text-gray-700 mb-3">Creates a new TrustedXAuthWidget instance.</p>
+                        <div class="method-params bg-white p-3 rounded border border-gray-200 mb-3">
+                            <div class="param flex">
+                                <div class="param-name font-medium">config</div>
+                                <div class="param-desc text-gray-600">Configuration object</div>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-600">Returns: <span class="text-gray-700">TrustedXAuthWidget - New widget instance</span></p>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded mb-4">
+                        <h4 class="font-semibold text-blue-600 mb-2">createMultiple(configs)</h4>
+                        <p class="text-gray-700 mb-3">Creates multiple TrustedXAuthWidget instances.</p>
+                        <div class="method-params bg-white p-3 rounded border border-gray-200 mb-3">
+                            <div class="param flex">
+                                <div class="param-name font-medium">configs</div>
+                                <div class="param-desc text-gray-600">Array of configuration objects</div>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-600">Returns: <span class="text-gray-700">Array - Array of widget instances</span></p>
+                    </div>
+                    
+                    <div class="method bg-gray-50 p-4 rounded">
+                        <h4 class="font-semibold text-blue-600 mb-2">createWithTheme(theme, config)</h4>
+                        <p class="text-gray-700 mb-3">Creates a new TrustedXAuthWidget with a specific theme.</p>
+                        <div class="method-params bg-white p-3 rounded border border-gray-200 mb-3">
+                            <div class="param flex mb-1">
+                                <div class="param-name font-medium">theme</div>
+                                <div class="param-desc text-gray-600">Theme name ("default", "dark", "modern", "minimal")</div>
+                            </div>
+                            <div class="param flex">
+                                <div class="param-name font-medium">config</div>
+                                <div class="param-desc text-gray-600">Configuration object</div>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-600">Returns: <span class="text-gray-700">TrustedXAuthWidget - New themed widget instance</span></p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Plugins -->
+            <section id="plugins" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Built-in Plugins</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-medium text-gray-700 mb-3">AnalyticsPlugin</h3>
+                        <p class="text-gray-600 mb-3">Tracks authentication events (start, success, error).</p>
+                        <pre class="mb-3"><code class="language-javascript">// Usage
+const widget = new EnhancedTrustedXAuthWidget({
+    analytics: true,
+    // other config
+});</code></pre>
+                        <p class="text-sm text-gray-500">Automatically tracks authentication events when enabled.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-medium text-gray-700 mb-3">DebugPlugin</h3>
+                        <p class="text-gray-600 mb-3">Provides debug logging and UI panel when debug mode is enabled.</p>
+                        <pre class="mb-3"><code class="language-javascript">// Usage
+const widget = new EnhancedTrustedXAuthWidget({
+    debug: true,
+    // other config
+});</code></pre>
+                        <p class="text-sm text-gray-500">Shows detailed logs and error information in a debug panel.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-medium text-gray-700 mb-3">RetryPlugin</h3>
+                        <p class="text-gray-600 mb-3">Automatically retries failed token exchanges.</p>
+                        <pre class="mb-3"><code class="language-javascript">// Usage
+const widget = new EnhancedTrustedXAuthWidget({
+    maxRetries: 3,
+    retryDelay: 1000,
+    // other config
+});</code></pre>
+                        <p class="text-sm text-gray-500">Will attempt to retry failed requests up to maxRetries times.</p>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">Creating Custom Plugins</h3>
+                    <p class="text-gray-600 mb-4">Plugins must implement an <code class="text-blue-600 bg-blue-50 px-1 py-0.5 rounded">init(widget)</code> method and optionally a <code class="text-blue-600 bg-blue-50 px-1 py-0.5 rounded">destroy()</code> method.</p>
+                    
+                    <pre class="mb-4"><code class="language-javascript">class CustomPlugin {
+    init(widget) {
+        this.widget = widget;
+        // Setup plugin functionality
+        this.widget.addHook('afterTokenExchange', (tokens) => {
+            console.log('Tokens received:', tokens);
+        });
+    }
+    
+    destroy() {
+        // Cleanup if needed
+    }
+}
+
+// Usage
+const widget = new EnhancedTrustedXAuthWidget(config);
+widget.use('custom', new CustomPlugin());</code></pre>
+                    
+                    <div class="bg-blue-50 border border-blue-100 rounded-lg p-4">
+                        <h4 class="font-semibold text-blue-800 mb-2">Plugin Lifecycle</h4>
+                        <ol class="list-decimal pl-5 text-blue-700 space-y-1">
+                            <li><code>init(widget)</code> - Called when plugin is registered</li>
+                            <li><code>hooks</code> - Can be added at any time</li>
+                            <li><code>destroy()</code> - Called when widget is destroyed or plugin is unregistered</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Hooks -->
+            <section id="hooks" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Available Hooks</h2>
+                    <p class="text-gray-600 mb-6">Hooks allow you to execute code at specific points in the authentication flow.</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hook Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trigger</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Parameters</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">beforeAuthStart</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Before starting authentication flow</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">None</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">afterAuthStart</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">After starting authentication flow</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">None</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">authStartError</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">When authentication start fails</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Error object</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">beforeTokenExchange</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Before exchanging code for tokens</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">code, state</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">afterTokenExchange</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">After successful token exchange</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">tokens</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">tokenExchangeError</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">When token exchange fails</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Error object</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">beforeDestroy</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Before widget destruction</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">None</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">afterDestroy</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">After widget destruction</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">None</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-xl font-medium text-gray-700 mb-3">Example Hook Usage</h3>
+                        <pre><code class="language-javascript">// Example hook usage
+widget.addHook('afterTokenExchange', (tokens) => {
+    console.log('Tokens received:', tokens);
+    localStorage.setItem('access_token', tokens.access_token);
+});</code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Error Handling -->
+            <section id="error-handling" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Error Handling</h2>
+                    <p class="text-gray-600 mb-6">The widget provides comprehensive error handling with standardized error codes.</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Error Code</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">invalid_token</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Token invalide ou expiré</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">insufficient_scope</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Permissions insuffisantes</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">invalid_grant</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Code d'autorisation invalide ou expiré</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">access_denied</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Authentification annulée</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">invalid_request</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Requête invalide</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">invalid_scope</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Permissions invalides</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">server_error</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Erreur du serveur</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">popup_closed</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">La fenêtre d'authentification a été fermée</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">browser_error</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Navigateur non supporté</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">backend_error</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Erreur du backend</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">token_error</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Erreur de validation du token</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-yellow-800">Error Handling Tips</h3>
+                                <div class="mt-2 text-sm text-yellow-700">
+                                    <p>Always implement the <code class="bg-yellow-100 px-1 py-0.5 rounded">onError</code> callback to handle authentication failures gracefully.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Examples -->
+            <section id="examples" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Advanced Examples</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-medium text-gray-700 mb-3">Backend Integration</h3>
+                        <pre class="mb-3"><code class="language-javascript">const widget = new TrustedXAuthWidget({
+    clientId: "your-client-id",
+    beUrl: "https://your-api.com/auth/exchange",
+    beBearer: "Bearer your-api-token",
+    onSuccess: (tokens) => {
+        // Handle tokens from your backend
+        console.log("Backend response:", tokens);
+    }
+});</code></pre>
+                        <p class="text-sm text-gray-500">This configuration will send the authorization code to your backend for exchange.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-medium text-gray-700 mb-3">Direct Token Exchange</h3>
+                        <pre class="mb-3"><code class="language-javascript">const widget = new TrustedXAuthWidget({
+    clientId: "your-client-id",
+    verifyAccessToken: true,
+    onSuccess: (tokens) => {
+        // Handle tokens directly from TrustedX
+        console.log("Direct tokens:", tokens);
+    }
+});</code></pre>
+                        <p class="text-sm text-gray-500">This configuration performs token exchange directly in the browser.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-medium text-gray-700 mb-3">Multiple Widgets with Themes</h3>
+                        <pre class="mb-3"><code class="language-javascript">// Create multiple widgets with different themes
+const widgets = TrustedXWidgetFactory.createMultiple([
+    {
+        clientId: "client1",
+        ui: {
+            container: "#widget1",
+            theme: "dark"
+        }
+    },
+    {
+        clientId: "client2",
+        ui: {
+            container: "#widget2",
+            theme: "modern"
+        }
+    }
+]);</code></pre>
+                        <p class="text-sm text-gray-500">Create multiple themed widgets with a single factory call.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 border border-blue-100 rounded-lg p-4">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-2">Complete Example with Hooks</h3>
+                        <pre><code class="language-javascript">const widget = new EnhancedTrustedXAuthWidget({
+    clientId: "your-client-id",
+    debug: true,
+    analytics: true,
+    
+    // UI Configuration
+    ui: {
+        container: "#auth-container",
+        theme: "modern",
+        primaryColor: "#4f46e5",
+        language: "en"
+    },
+    
+    // Callbacks
+    onSuccess: (tokens) => {
+        console.log("Authentication successful", tokens);
+        updateUI(tokens);
+    },
+    
+    onError: (error) => {
+        console.error("Authentication failed", error);
+        showError(error);
+    }
+});
+
+// Add hooks
+widget.addHook('beforeAuthStart', () => {
+    console.log("Starting authentication flow...");
+    showLoadingSpinner();
+});
+
+widget.addHook('afterTokenExchange', (tokens) => {
+    trackAnalytics('auth_success');
+    storeTokens(tokens);
+});</code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Compatibility -->
+            <section id="compatibility" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Browser Compatibility</h2>
+                    
+                    <div class="mb-6">
+                        <p class="text-gray-600 mb-3">The widget requires a modern browser with support for:</p>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                            <li>ES6+ features (classes, promises, etc.)</li>
+                            <li>Web Crypto API (for PKCE)</li>
+                            <li>Session Storage</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Browser</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Minimum Version</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Chrome</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">61+</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Full support</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Firefox</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">60+</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Full support</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Safari</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">11+</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Full support</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Edge</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">16+</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Full support</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">IE</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Not supported</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Lacks required APIs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-6 bg-blue-50 border-l-4 border-blue-400 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-blue-800">Compatibility Note</h3>
+                                <div class="mt-2 text-sm text-blue-700">
+                                    <p>The widget includes a compatibility check and will throw an error if required APIs are not available.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Security -->
+            <section id="security" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Security Considerations</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-700 mb-3">Best Practices</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Always use HTTPS in production</li>
+                                <li>Keep your client credentials secure</li>
+                                <li>Validate tokens on your backend for sensitive operations</li>
+                                <li>Use appropriate redirect URIs</li>
+                                <li>Enable PKCE (enabled by default)</li>
+                                <li>Implement CSRF protection for your backend endpoints</li>
+                                <li>Regularly rotate client secrets</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-700 mb-3">Security Features</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>PKCE support by default</li>
+                                <li>Token validation options</li>
+                                <li>Secure popup handling</li>
+                                <li>State parameter for CSRF protection</li>
+                                <li>No token storage in the widget</li>
+                                <li>Configurable token expiration checks</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-red-50 border-l-4 border-red-400 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-red-800">Important Security Note</h3>
+                                <div class="mt-2 text-sm text-red-700">
+                                    <p>Never expose sensitive credentials in client-side code. The widget is designed to work with public clients, but backend-mediated flows are recommended for production applications.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Troubleshooting -->
+            <section id="troubleshooting" class="mb-12">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Troubleshooting</h2>
+                    
+                    <h3 class="text-xl font-medium text-gray-700 mb-3">Common Issues</h3>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Issue</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Solution</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Widget not appearing</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Check container element exists and config is valid</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Popup blocked</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Ensure popups are allowed for your domain</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Invalid redirect URI</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Verify redirect URI matches registered URI</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Token validation errors</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Check system clock and token expiration</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">CORS errors</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Ensure your backend has proper CORS headers</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Environment issues</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">Verify you're using the correct environment (test/production)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3 class="text-xl font-medium text-gray-700 mb-3">Debugging</h3>
+                    <p class="text-gray-600 mb-4">Enable debug mode to get detailed logs:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <pre class="mb-3"><code class="language-javascript">const widget = new EnhancedTrustedXAuthWidget({
+    debug: true,
+    // other config
+});</code></pre>
+                            <p class="text-sm text-gray-500">Debug mode shows detailed logs in the console and adds a debug panel to the UI.</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                            <h4 class="font-semibold text-gray-700 mb-2">Debug Panel Features</h4>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-1">
+                                <li>Current configuration</li>
+                                <li>Authentication state</li>
+                                <li>Event logs</li>
+                                <li>Token inspection</li>
+                                <li>Environment information</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-purple-50 border-l-4 border-purple-400 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-purple-800">Support</h3>
+                                <div class="mt-2 text-sm text-purple-700">
+                                    <p>For additional help, contact <a href="mailto:support@trustedx.com" class="underline">support@trustedx.com</a> with detailed error information and steps to reproduce.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Footer -->
+            <footer class="mt-12 border-t border-gray-200 pt-8">
+                <div class="flex flex-col items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">TrustedX Authentication Widget</h3>
+                    <p class="text-gray-600 mb-4">Version 2.0 - Modular Architecture with Plugin Support</p>
+                    <p class="text-sm text-gray-500">© 2023 TrustedX. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
