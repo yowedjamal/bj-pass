@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Simple BjPass Widget</title>
+</head>
+<body>
+    <h1>Test Simple BjPass Widget</h1>
+    
+    <div id="status">Vérification...</div>
+    
+    <div id="widget-container"></div>
+    
+    <button onclick="testWidget()">Tester le Widget</button>
+    
+    <!-- Chargement du widget -->
+    <script src="dist/bj-pass-auth-widget.min.js"></script>
+    
+    <script>
+        // Vérification immédiate
+        console.log('Window object:', window);
+        console.log('BjPassAuthWidget:', window.BjPassAuthWidget);
+        console.log('Type de BjPassAuthWidget:', typeof window.BjPassAuthWidget);
+        
+        const statusDiv = document.getElementById('status');
+        
+        if (typeof window.BjPassAuthWidget === 'function') {
+            statusDiv.innerHTML = '<p style="color: green;">✅ BjPassAuthWidget est disponible et est une fonction</p>';
+            console.log('✅ BjPassAuthWidget est disponible et est une fonction');
+        } else {
+            statusDiv.innerHTML = '<p style="color: red;">❌ BjPassAuthWidget n\'est pas disponible ou n\'est pas une fonction</p>';
+            console.error('❌ BjPassAuthWidget n\'est pas disponible ou n\'est pas une fonction');
+        }
+        
+        function testWidget() {
+            try {
+                console.log('Tentative de création du widget...');
+                const widget = new BjPassAuthWidget({
+                    clientId: 'test-client',
+                    debug: true,
+                    onSuccess: (tokens) => {
+                        console.log('✅ Succès:', tokens);
+                        alert('Widget créé avec succès !');
+                    },
+                    onError: (error) => {
+                        console.error('❌ Erreur:', error);
+                        alert('Erreur: ' + error.message);
+                    }
+                });
+                
+                console.log('✅ Widget créé:', widget);
+                statusDiv.innerHTML += '<p style="color: green;">✅ Widget créé avec succès</p>';
+            } catch (error) {
+                console.error('❌ Erreur lors de la création:', error);
+                statusDiv.innerHTML += '<p style="color: red;">❌ Erreur: ' + error.message + '</p>';
+                alert('Erreur: ' + error.message);
+            }
+        }
+        
+        // Test automatique après 1 seconde
+        setTimeout(() => {
+            if (typeof window.BjPassAuthWidget === 'function') {
+                testWidget();
+            }
+        }, 1000);
+    </script>
+</body>
+</html> 

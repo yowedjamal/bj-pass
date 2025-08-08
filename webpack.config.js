@@ -12,7 +12,7 @@ module.exports = {
       export: 'default',
       umdNamedDefine: true
     },
-    globalObject: 'this',
+    globalObject: 'window',
     clean: true
   },
   module: {
