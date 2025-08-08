@@ -30,7 +30,3 @@
 * [Compatibilité](additional-info/compatibility.md)
 * [Sécurité](additional-info/security.md)
 * [Dépannage](additional-info/troubleshooting.md)
-
-## Déploiement
-
-* [Guide de déploiement](DEPLOYMENT.md)
