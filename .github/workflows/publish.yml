@@ -1,0 +1,60 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build package
+      run: npm run build
+      
+    - name: Test package
+      run: npm pack
+      
+    - name: Publish to npm
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
+    - name: Verify jsDelivr availability
+      run: |
+        echo "Waiting for jsDelivr to update..."
+        sleep 60
+        
+        # Test if the package is available on jsDelivr
+        curl -f "https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@${{ github.event.release.tag_name }}/dist/bj-pass-auth-widget.min.js" || {
+          echo "Package not yet available on jsDelivr"
+          exit 1
+        }
+        
+        echo "✅ Package successfully published and available on jsDelivr!"
+        
+    - name: Create jsDelivr badge
+      run: |
+        echo "## 📦 Distribution" >> $GITHUB_WORKSPACE/DISTRIBUTION.md
+        echo "" >> $GITHUB_WORKSPACE/DISTRIBUTION.md
+        echo "### jsDelivr CDN" >> $GITHUB_WORKSPACE/DISTRIBUTION.md
+        echo "" >> $GITHUB_WORKSPACE/DISTRIBUTION.md
+        echo "**Latest version:**" >> $GITHUB_WORKSPACE/DISTRIBUTION.md
+        echo "\`\`\`html" >> $GITHUB_WORKSPACE/DISTRIBUTION.md
+        echo "<script src=\"https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@${{ github.event.release.tag_name }}/dist/bj-pass-auth-widget.min.js\"></script>" >> $GITHUB_WORKSPACE/DISTRIBUTION.md
+        echo "\`\`\`" >> $GITHUB_WORKSPACE/DISTRIBUTION.md
+        echo "" >> $GITHUB_WORKSPACE/DISTRIBUTION.md
+        echo "**Stats:** [https://www.jsdelivr.com/package/npm/bj-pass-auth-widget](https://www.jsdelivr.com/package/npm/bj-pass-auth-widget)" >> $GITHUB_WORKSPACE/DISTRIBUTION.md 

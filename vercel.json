@@ -1,0 +1,7 @@
+{
+  "buildCommand": "npm install -g honkit && cd docs && honkit build . ../_book",
+  "outputDirectory": "_book",
+  "framework": null,
+  "installCommand": "echo 'No install needed'",
+  "devCommand": "cd docs && honkit serve . ../_book"
+} 
