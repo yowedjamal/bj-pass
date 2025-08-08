@@ -1,0 +1,880 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Système de hooks · bj-pass Authentication Widget</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.0.3">
+        <meta name="author" content="yowedjamal">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../advanced/plugins.html" />
+    
+    
+    <link rel="prev" href="factory-api.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">SUMMARY.md</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Démarrage rapide</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../getting-started/installation.html">
+            
+                <a href="../getting-started/installation.html">
+            
+                    
+                    Installation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../getting-started/usage.html">
+            
+                <a href="../getting-started/usage.html">
+            
+                    
+                    Utilisation de base
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../getting-started/configuration.html">
+            
+                <a href="../getting-started/configuration.html">
+            
+                    
+                    Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Référence API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="core-api.html">
+            
+                <a href="core-api.html">
+            
+                    
+                    API Core
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="enhanced-api.html">
+            
+                <a href="enhanced-api.html">
+            
+                    
+                    API Enhanced
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="factory-api.html">
+            
+                <a href="factory-api.html">
+            
+                    
+                    API Factory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.4" data-path="hooks.html">
+            
+                <a href="hooks.html">
+            
+                    
+                    Système de hooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Fonctionnalités avancées</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../advanced/plugins.html">
+            
+                <a href="../advanced/plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../advanced/error-handling.html">
+            
+                <a href="../advanced/error-handling.html">
+            
+                    
+                    Gestion des erreurs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../advanced/examples.html">
+            
+                <a href="../advanced/examples.html">
+            
+                    
+                    Exemples avancés
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Informations supplémentaires</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../additional-info/compatibility.html">
+            
+                <a href="../additional-info/compatibility.html">
+            
+                    
+                    Compatibilité
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../additional-info/security.html">
+            
+                <a href="../additional-info/security.html">
+            
+                    
+                    Sécurité
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../additional-info/troubleshooting.html">
+            
+                <a href="../additional-info/troubleshooting.html">
+            
+                    
+                    Dépannage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Déploiement</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../DEPLOYMENT.html">
+            
+                <a href="../DEPLOYMENT.html">
+            
+                    
+                    Guide de déploiement
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Publié avec HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Système de hooks</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="système-de-hooks">Système de Hooks</h1>
+<p>Guide complet du système de hooks du widget d'authentification bj-pass pour personnaliser le comportement.</p>
+<h2 id="vue-densemble">Vue d'ensemble</h2>
+<p>Les hooks permettent d'exécuter du code à des moments spécifiques du flux d'authentification. Ils offrent une flexibilité maximale pour personnaliser le comportement du widget.</p>
+<h2 id="hooks-disponibles">Hooks disponibles</h2>
+<h3 id="hooks-dauthentification">Hooks d'authentification</h3>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Déclenchement</th>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beforeAuthStart</code></td>
+<td>Avant de démarrer le flux d'authentification</td>
+<td>Aucun</td>
+<td>Permet de préparer l'interface ou valider les conditions</td>
+</tr>
+<tr>
+<td><code>afterAuthStart</code></td>
+<td>Après avoir démarré le flux d'authentification</td>
+<td>Aucun</td>
+<td>Confirme que le processus a commencé</td>
+</tr>
+<tr>
+<td><code>authStartError</code></td>
+<td>Quand le démarrage de l'authentification échoue</td>
+<td><code>error</code></td>
+<td>Gère les erreurs de démarrage</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hooks-déchange-de-tokens">Hooks d'échange de tokens</h3>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Déclenchement</th>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beforeTokenExchange</code></td>
+<td>Avant d'échanger le code contre des tokens</td>
+<td><code>code</code>, <code>state</code></td>
+<td>Permet de modifier ou valider les paramètres</td>
+</tr>
+<tr>
+<td><code>afterTokenExchange</code></td>
+<td>Après un échange de tokens réussi</td>
+<td><code>tokens</code></td>
+<td>Traite les tokens reçus</td>
+</tr>
+<tr>
+<td><code>tokenExchangeError</code></td>
+<td>Quand l'échange de tokens échoue</td>
+<td><code>error</code></td>
+<td>Gère les erreurs d'échange</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hooks-de-cycle-de-vie">Hooks de cycle de vie</h3>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Déclenchement</th>
+<th>Paramètres</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beforeDestroy</code></td>
+<td>Avant la destruction du widget</td>
+<td>Aucun</td>
+<td>Permet le nettoyage personnalisé</td>
+</tr>
+<tr>
+<td><code>afterDestroy</code></td>
+<td>Après la destruction du widget</td>
+<td>Aucun</td>
+<td>Confirme la destruction</td>
+</tr>
+</tbody>
+</table>
+<h2 id="utilisation-des-hooks">Utilisation des hooks</h2>
+<h3 id="ajout-dun-hook">Ajout d'un hook</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EnhancedBjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>
+});
+
+<span class="hljs-comment">// Ajouter un hook</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Tokens reçus :'</span>, tokens);
+    <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">'access_token'</span>, tokens.<span class="hljs-property">access_token</span>);
+});
+</code></pre>
+<h3 id="ajout-de-plusieurs-hooks">Ajout de plusieurs hooks</h3>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Hook avant démarrage</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'beforeAuthStart'</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Démarrage de l'authentification..."</span>);
+    <span class="hljs-title function_">showLoadingSpinner</span>();
+});
+
+<span class="hljs-comment">// Hook après réception des tokens</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Échange de tokens réussi"</span>);
+    <span class="hljs-title function_">hideLoadingSpinner</span>();
+    <span class="hljs-title function_">storeTokens</span>(tokens);
+});
+
+<span class="hljs-comment">// Hook en cas d'erreur</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'tokenExchangeError'</span>, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">"Erreur d'échange :"</span>, error);
+    <span class="hljs-title function_">hideLoadingSpinner</span>();
+    <span class="hljs-title function_">showErrorMessage</span>(error.<span class="hljs-property">message</span>);
+});
+</code></pre>
+<h2 id="exemples-dutilisation">Exemples d'utilisation</h2>
+<h3 id="gestion-des-états-de-chargement">Gestion des états de chargement</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EnhancedBjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>
+});
+
+<span class="hljs-comment">// Afficher le spinner au démarrage</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'beforeAuthStart'</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'loading-spinner'</span>).<span class="hljs-property">style</span>.<span class="hljs-property">display</span> = <span class="hljs-string">'block'</span>;
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'login-button'</span>).<span class="hljs-property">disabled</span> = <span class="hljs-literal">true</span>;
+});
+
+<span class="hljs-comment">// Masquer le spinner après réception des tokens</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'loading-spinner'</span>).<span class="hljs-property">style</span>.<span class="hljs-property">display</span> = <span class="hljs-string">'none'</span>;
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'login-button'</span>).<span class="hljs-property">disabled</span> = <span class="hljs-literal">false</span>;
+    <span class="hljs-title function_">handleSuccessfulAuth</span>(tokens);
+});
+
+<span class="hljs-comment">// Masquer le spinner en cas d'erreur</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'tokenExchangeError'</span>, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'loading-spinner'</span>).<span class="hljs-property">style</span>.<span class="hljs-property">display</span> = <span class="hljs-string">'none'</span>;
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">'login-button'</span>).<span class="hljs-property">disabled</span> = <span class="hljs-literal">false</span>;
+    <span class="hljs-title function_">handleAuthError</span>(error);
+});
+</code></pre>
+<h3 id="analytics-et-tracking">Analytics et tracking</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EnhancedBjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>
+});
+
+<span class="hljs-comment">// Tracking du début d'authentification</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'beforeAuthStart'</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">trackEvent</span>(<span class="hljs-string">'auth_start'</span>, {
+        <span class="hljs-attr">timestamp</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toISOString</span>(),
+        <span class="hljs-attr">clientId</span>: widget.<span class="hljs-title function_">getConfig</span>().<span class="hljs-property">clientId</span>
+    });
+});
+
+<span class="hljs-comment">// Tracking de la réussite</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+    <span class="hljs-title function_">trackEvent</span>(<span class="hljs-string">'auth_success'</span>, {
+        <span class="hljs-attr">timestamp</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toISOString</span>(),
+        <span class="hljs-attr">hasAccessToken</span>: !!tokens.<span class="hljs-property">access_token</span>,
+        <span class="hljs-attr">hasRefreshToken</span>: !!tokens.<span class="hljs-property">refresh_token</span>
+    });
+});
+
+<span class="hljs-comment">// Tracking des erreurs</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'tokenExchangeError'</span>, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-title function_">trackEvent</span>(<span class="hljs-string">'auth_error'</span>, {
+        <span class="hljs-attr">timestamp</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toISOString</span>(),
+        <span class="hljs-attr">errorCode</span>: error.<span class="hljs-property">code</span>,
+        <span class="hljs-attr">errorMessage</span>: error.<span class="hljs-property">message</span>
+    });
+});
+</code></pre>
+<h3 id="stockage-personnalisé-des-tokens">Stockage personnalisé des tokens</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EnhancedBjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>
+});
+
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+    <span class="hljs-comment">// Stockage sécurisé des tokens</span>
+    <span class="hljs-keyword">if</span> (tokens.<span class="hljs-property">access_token</span>) {
+        secureStorage.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">'access_token'</span>, tokens.<span class="hljs-property">access_token</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (tokens.<span class="hljs-property">refresh_token</span>) {
+        secureStorage.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">'refresh_token'</span>, tokens.<span class="hljs-property">refresh_token</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (tokens.<span class="hljs-property">id_token</span>) {
+        secureStorage.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">'id_token'</span>, tokens.<span class="hljs-property">id_token</span>);
+    }
+
+    <span class="hljs-comment">// Mise à jour de l'interface utilisateur</span>
+    <span class="hljs-title function_">updateUserInterface</span>(tokens);
+});
+</code></pre>
+<h3 id="validation-personnalisée">Validation personnalisée</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EnhancedBjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>
+});
+
+<span class="hljs-comment">// Validation avant échange de tokens</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'beforeTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">code, state</span>) =&gt;</span> {
+    <span class="hljs-comment">// Vérifier que le code n'est pas vide</span>
+    <span class="hljs-keyword">if</span> (!code) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'Code d\'autorisation manquant'</span>);
+    }
+
+    <span class="hljs-comment">// Vérifier que le state correspond</span>
+    <span class="hljs-keyword">const</span> expectedState = <span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">'auth_state'</span>);
+    <span class="hljs-keyword">if</span> (state !== expectedState) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'State invalide'</span>);
+    }
+
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Validation réussie, échange de tokens...'</span>);
+});
+</code></pre>
+<h3 id="nettoyage-personnalisé">Nettoyage personnalisé</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EnhancedBjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>
+});
+
+<span class="hljs-comment">// Nettoyage avant destruction</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'beforeDestroy'</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// Nettoyer les listeners personnalisés</span>
+    <span class="hljs-title function_">cleanupCustomListeners</span>();
+
+    <span class="hljs-comment">// Sauvegarder l'état si nécessaire</span>
+    <span class="hljs-title function_">saveWidgetState</span>();
+
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Widget en cours de destruction...'</span>);
+});
+
+<span class="hljs-comment">// Confirmation après destruction</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterDestroy'</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Widget détruit avec succès'</span>);
+});
+</code></pre>
+<h2 id="hooks-dans-les-plugins">Hooks dans les plugins</h2>
+<h3 id="création-dun-plugin-avec-hooks">Création d'un plugin avec hooks</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">AnalyticsPlugin</span> {
+    <span class="hljs-title function_">init</span>(<span class="hljs-params">widget</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span> = widget;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setupHooks</span>();
+    }
+
+    <span class="hljs-title function_">setupHooks</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-comment">// Hook pour le début d'authentification</span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span>.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'beforeAuthStart'</span>, <span class="hljs-function">() =&gt;</span> {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">trackEvent</span>(<span class="hljs-string">'auth_start'</span>);
+        });
+
+        <span class="hljs-comment">// Hook pour la réussite</span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span>.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">trackEvent</span>(<span class="hljs-string">'auth_success'</span>, { tokens });
+        });
+
+        <span class="hljs-comment">// Hook pour les erreurs</span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span>.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'tokenExchangeError'</span>, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">trackEvent</span>(<span class="hljs-string">'auth_error'</span>, { error });
+        });
+    }
+
+    <span class="hljs-title function_">trackEvent</span>(<span class="hljs-params">eventName, data = {}</span>) {
+        <span class="hljs-comment">// Logique de tracking</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Analytics: <span class="hljs-subst">${eventName}</span>`</span>, data);
+
+        <span class="hljs-comment">// Envoi à votre service d'analytics</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">window</span>.<span class="hljs-property">gtag</span>) {
+            <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">gtag</span>(<span class="hljs-string">'event'</span>, eventName, data);
+        }
+    }
+}
+
+<span class="hljs-comment">// Utilisation</span>
+<span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EnhancedBjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>
+});
+
+widget.<span class="hljs-title function_">use</span>(<span class="hljs-string">'analytics'</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnalyticsPlugin</span>());
+</code></pre>
+<h3 id="plugin-de-notifications">Plugin de notifications</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NotificationPlugin</span> {
+    <span class="hljs-title function_">init</span>(<span class="hljs-params">widget</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span> = widget;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setupNotifications</span>();
+    }
+
+    <span class="hljs-title function_">setupNotifications</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-comment">// Notification de succès</span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span>.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">showSuccessNotification</span>(<span class="hljs-string">'Authentification réussie !'</span>);
+        });
+
+        <span class="hljs-comment">// Notification d'erreur</span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span>.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'tokenExchangeError'</span>, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">showErrorNotification</span>(<span class="hljs-string">`Erreur : <span class="hljs-subst">${error.message}</span>`</span>);
+        });
+
+        <span class="hljs-comment">// Notification de démarrage</span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">widget</span>.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'beforeAuthStart'</span>, <span class="hljs-function">() =&gt;</span> {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">showInfoNotification</span>(<span class="hljs-string">'Démarrage de l\'authentification...'</span>);
+        });
+    }
+
+    <span class="hljs-title function_">showSuccessNotification</span>(<span class="hljs-params">message</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">showNotification</span>(message, <span class="hljs-string">'success'</span>);
+    }
+
+    <span class="hljs-title function_">showErrorNotification</span>(<span class="hljs-params">message</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">showNotification</span>(message, <span class="hljs-string">'error'</span>);
+    }
+
+    <span class="hljs-title function_">showInfoNotification</span>(<span class="hljs-params">message</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">showNotification</span>(message, <span class="hljs-string">'info'</span>);
+    }
+
+    <span class="hljs-title function_">showNotification</span>(<span class="hljs-params">message, type</span>) {
+        <span class="hljs-comment">// Logique d'affichage des notifications</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Notification [<span class="hljs-subst">${type}</span>]: <span class="hljs-subst">${message}</span>`</span>);
+
+        <span class="hljs-comment">// Utilisation d'une bibliothèque de notifications</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">window</span>.<span class="hljs-property">toastr</span>) {
+            <span class="hljs-variable language_">window</span>.<span class="hljs-property">toastr</span>[type](message);
+        }
+    }
+}
+</code></pre>
+<h2 id="bonnes-pratiques">Bonnes pratiques</h2>
+<h3 id="gestion-des-erreurs-dans-les-hooks">Gestion des erreurs dans les hooks</h3>
+<pre><code class="lang-javascript">widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-comment">// Logique personnalisée</span>
+        <span class="hljs-title function_">processTokens</span>(tokens);
+        <span class="hljs-title function_">updateUI</span>(tokens);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">'Erreur dans le hook afterTokenExchange:'</span>, error);
+        <span class="hljs-comment">// Ne pas laisser l'erreur interrompre le flux principal</span>
+    }
+});
+</code></pre>
+<h3 id="hooks-conditionnels">Hooks conditionnels</h3>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Hook qui ne s'exécute que dans certains cas</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+    <span class="hljs-comment">// Vérifier si l'utilisateur est un administrateur</span>
+    <span class="hljs-keyword">if</span> (tokens.<span class="hljs-property">user_info</span> &amp;&amp; tokens.<span class="hljs-property">user_info</span>.<span class="hljs-property">role</span> === <span class="hljs-string">'admin'</span>) {
+        <span class="hljs-title function_">enableAdminFeatures</span>();
+    }
+
+    <span class="hljs-comment">// Vérifier si c'est la première connexion</span>
+    <span class="hljs-keyword">if</span> (tokens.<span class="hljs-property">user_info</span> &amp;&amp; tokens.<span class="hljs-property">user_info</span>.<span class="hljs-property">first_login</span>) {
+        <span class="hljs-title function_">showWelcomeMessage</span>();
+    }
+});
+</code></pre>
+<h3 id="nettoyage-des-hooks">Nettoyage des hooks</h3>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stocker les références des callbacks pour pouvoir les supprimer</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">beforeAuthCallback</span> = (<span class="hljs-params"></span>) =&gt; {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Démarrage de l\'authentification...'</span>);
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">afterTokenCallback</span> = (<span class="hljs-params">tokens</span>) =&gt; {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Tokens reçus:'</span>, tokens);
+};
+
+<span class="hljs-comment">// Ajouter les hooks</span>
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'beforeAuthStart'</span>, beforeAuthCallback);
+widget.<span class="hljs-title function_">addHook</span>(<span class="hljs-string">'afterTokenExchange'</span>, afterTokenCallback);
+
+<span class="hljs-comment">// Plus tard, supprimer les hooks si nécessaire</span>
+<span class="hljs-comment">// Note: Le widget actuel ne supporte pas la suppression de hooks individuels</span>
+<span class="hljs-comment">// mais vous pouvez détruire le widget complet</span>
+widget.<span class="hljs-title function_">destroy</span>();
+</code></pre>
+<h2 id="prochaines-étapes">Prochaines étapes</h2>
+<ul>
+<li><a href="../enhanced-api.md">API Enhanced</a> pour plus de détails sur les plugins</li>
+<li><a href="../advanced/examples.html">Exemples avancés</a> pour des cas d'usage complexes</li>
+<li><a href="../advanced/error-handling.html">Gestion des erreurs</a> pour une gestion robuste</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="factory-api.html" class="navigation navigation-prev " aria-label="Previous page: API Factory">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../advanced/plugins.html" class="navigation navigation-next " aria-label="Next page: Plugins">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Système de hooks","level":"3.4","depth":1,"next":{"title":"Plugins","level":"4.1","depth":1,"path":"advanced/plugins.md","ref":"advanced/plugins.md","articles":[]},"previous":{"title":"API Factory","level":"3.3","depth":1,"path":"api-reference/factory-api.md","ref":"api-reference/factory-api.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","theme-default"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{"theme":"github"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"yowedjamal","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"2.0.0","github":"https://github.com/yowedjamal/bj-pass","email":"yowedjamal@gmail.com"},"title":"bj-pass Authentication Widget","language":"fr","gitbook":"*","description":"Documentation complète du widget d'authentification bj-pass"},"file":{"path":"api-reference/hooks.md","mtime":"2025-08-08T12:06:40.739Z","type":"markdown"},"gitbook":{"version":"6.0.3","time":"2025-08-08T12:57:48.027Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

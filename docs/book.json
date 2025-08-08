@@ -7,37 +7,13 @@
         "readme": "README.md",
         "summary": "SUMMARY.md"
     },
-    "plugins": [
-        "highlight",
-        "search",
-        "lunr",
-        "sharing",
-        "fontsettings",
-        "theme-default"
-    ],
+      "plugins": [
+    "highlight",
+    "theme-default"
+  ],
     "pluginsConfig": {
         "highlight": {
             "theme": "github"
-        },
-        "search": {
-            "maxIndexSize": 100000,
-            "ignoreCase": true
-        },
-        "sharing": {
-            "facebook": true,
-            "twitter": true,
-            "google": false,
-            "weibo": false,
-            "instapaper": false,
-            "vk": false,
-            "all": [
-                "facebook", "twitter", "google", "weibo", "instapaper"
-            ]
-        },
-        "fontsettings": {
-            "theme": "white",
-            "family": "sans",
-            "size": 2
         }
     },
     "variables": {

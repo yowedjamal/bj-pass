@@ -1,0 +1,921 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Sécurité · bj-pass Authentication Widget</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.0.3">
+        <meta name="author" content="yowedjamal">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="troubleshooting.html" />
+    
+    
+    <link rel="prev" href="compatibility.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">SUMMARY.md</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Démarrage rapide</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../getting-started/installation.html">
+            
+                <a href="../getting-started/installation.html">
+            
+                    
+                    Installation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../getting-started/usage.html">
+            
+                <a href="../getting-started/usage.html">
+            
+                    
+                    Utilisation de base
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../getting-started/configuration.html">
+            
+                <a href="../getting-started/configuration.html">
+            
+                    
+                    Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Référence API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../api-reference/core-api.html">
+            
+                <a href="../api-reference/core-api.html">
+            
+                    
+                    API Core
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../api-reference/enhanced-api.html">
+            
+                <a href="../api-reference/enhanced-api.html">
+            
+                    
+                    API Enhanced
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../api-reference/factory-api.html">
+            
+                <a href="../api-reference/factory-api.html">
+            
+                    
+                    API Factory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../api-reference/hooks.html">
+            
+                <a href="../api-reference/hooks.html">
+            
+                    
+                    Système de hooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Fonctionnalités avancées</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../advanced/plugins.html">
+            
+                <a href="../advanced/plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../advanced/error-handling.html">
+            
+                <a href="../advanced/error-handling.html">
+            
+                    
+                    Gestion des erreurs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../advanced/examples.html">
+            
+                <a href="../advanced/examples.html">
+            
+                    
+                    Exemples avancés
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Informations supplémentaires</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="compatibility.html">
+            
+                <a href="compatibility.html">
+            
+                    
+                    Compatibilité
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.2" data-path="security.html">
+            
+                <a href="security.html">
+            
+                    
+                    Sécurité
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="troubleshooting.html">
+            
+                <a href="troubleshooting.html">
+            
+                    
+                    Dépannage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Déploiement</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../DEPLOYMENT.html">
+            
+                <a href="../DEPLOYMENT.html">
+            
+                    
+                    Guide de déploiement
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Publié avec HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Sécurité</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="sécurité">Sécurité</h1>
+<p>Guide des considérations de sécurité pour le widget d'authentification bj-pass.</p>
+<h2 id="vue-densemble">Vue d'ensemble</h2>
+<p>Le widget bj-pass implémente plusieurs mesures de sécurité pour garantir une authentification sécurisée et protéger les données sensibles.</p>
+<h2 id="mesures-de-sécurité">Mesures de sécurité</h2>
+<h3 id="pkce-proof-key-for-code-exchange">PKCE (Proof Key for Code Exchange)</h3>
+<p>Le widget utilise PKCE par défaut pour renforcer la sécurité du flux OAuth 2.0.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>,
+    <span class="hljs-attr">pkce</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// Activé par défaut</span>
+    <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Authentification sécurisée réussie !"</span>, tokens);
+    }
+});
+</code></pre>
+<p><strong>Avantages de PKCE :</strong></p>
+<ul>
+<li>Protection contre les attaques par interception</li>
+<li>Sécurité renforcée pour les clients publics</li>
+<li>Conformité aux standards OAuth 2.1</li>
+</ul>
+<h3 id="validation-des-tokens">Validation des tokens</h3>
+<p>Le widget peut valider les tokens d'accès localement.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>,
+    <span class="hljs-attr">verifyAccessToken</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+        <span class="hljs-comment">// Token validé avant d'être retourné</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Token validé :"</span>, tokens.<span class="hljs-property">access_token</span>);
+    }
+});
+</code></pre>
+<h3 id="gestion-sécurisée-des-popups">Gestion sécurisée des popups</h3>
+<p>Les popups d'authentification sont gérées de manière sécurisée.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Le widget gère automatiquement :</span>
+<span class="hljs-comment">// - La taille et position des popups</span>
+<span class="hljs-comment">// - La détection de fermeture</span>
+<span class="hljs-comment">// - La communication sécurisée entre fenêtres</span>
+<span class="hljs-comment">// - La protection contre les attaques de clickjacking</span>
+</code></pre>
+<h2 id="bonnes-pratiques">Bonnes pratiques</h2>
+<h3 id="configuration-sécurisée">Configuration sécurisée</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> secureConfig = {
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>,
+    <span class="hljs-attr">environment</span>: <span class="hljs-string">"production"</span>,
+
+    <span class="hljs-comment">// Sécurité activée</span>
+    <span class="hljs-attr">pkce</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">verifyAccessToken</span>: <span class="hljs-literal">true</span>,
+
+    <span class="hljs-comment">// Configuration backend sécurisée</span>
+    <span class="hljs-attr">beUrl</span>: <span class="hljs-string">"https://secure-api.yourdomain.com/auth/exchange"</span>,
+    <span class="hljs-attr">beBearer</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">API_BEARER_TOKEN</span>,
+
+    <span class="hljs-comment">// UI sécurisée</span>
+    <span class="hljs-attr">ui</span>: {
+        <span class="hljs-attr">showEnvSelector</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// Masquer en production</span>
+        <span class="hljs-attr">theme</span>: <span class="hljs-string">"modern"</span>
+    },
+
+    <span class="hljs-comment">// Callbacks sécurisés</span>
+    <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+        <span class="hljs-comment">// Validation supplémentaire</span>
+        <span class="hljs-keyword">if</span> (!tokens.<span class="hljs-property">access_token</span>) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'Token d\'accès manquant'</span>);
+        }
+
+        <span class="hljs-comment">// Stockage sécurisé</span>
+        <span class="hljs-title function_">secureTokenStorage</span>(tokens);
+    },
+
+    <span class="hljs-attr">onError</span>: <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+        <span class="hljs-comment">// Logging sécurisé</span>
+        <span class="hljs-title function_">logSecurityEvent</span>(<span class="hljs-string">'auth_error'</span>, error);
+    }
+};
+</code></pre>
+<h3 id="stockage-sécurisé-des-tokens">Stockage sécurisé des tokens</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SecureTokenStorage</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">storeTokens</span>(<span class="hljs-params">tokens</span>) {
+        <span class="hljs-comment">// Chiffrement des tokens avant stockage</span>
+        <span class="hljs-keyword">if</span> (tokens.<span class="hljs-property">access_token</span>) {
+            <span class="hljs-keyword">const</span> encryptedToken = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">encrypt</span>(tokens.<span class="hljs-property">access_token</span>);
+            <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">'encrypted_access_token'</span>, encryptedToken);
+        }
+
+        <span class="hljs-keyword">if</span> (tokens.<span class="hljs-property">refresh_token</span>) {
+            <span class="hljs-keyword">const</span> encryptedToken = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">encrypt</span>(tokens.<span class="hljs-property">refresh_token</span>);
+            <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">'encrypted_refresh_token'</span>, encryptedToken);
+        }
+
+        <span class="hljs-comment">// Stockage des métadonnées</span>
+        <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">'token_expires_at'</span>, tokens.<span class="hljs-property">expires_in</span> ? 
+            (<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() + tokens.<span class="hljs-property">expires_in</span> * <span class="hljs-number">1000</span>).<span class="hljs-title function_">toString</span>() : <span class="hljs-string">''</span>);
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">getAccessToken</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">const</span> encryptedToken = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">'encrypted_access_token'</span>);
+        <span class="hljs-keyword">if</span> (encryptedToken) {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">decrypt</span>(encryptedToken);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">getRefreshToken</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">const</span> encryptedToken = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">'encrypted_refresh_token'</span>);
+        <span class="hljs-keyword">if</span> (encryptedToken) {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">decrypt</span>(encryptedToken);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">clearTokens</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">'encrypted_access_token'</span>);
+        <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">'encrypted_refresh_token'</span>);
+        <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">'token_expires_at'</span>);
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">encrypt</span>(<span class="hljs-params">text</span>) {
+        <span class="hljs-comment">// Implémentation de chiffrement (exemple simple)</span>
+        <span class="hljs-comment">// En production, utilisez une bibliothèque de chiffrement robuste</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_">btoa</span>(text);
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">decrypt</span>(<span class="hljs-params">encryptedText</span>) {
+        <span class="hljs-comment">// Implémentation de déchiffrement</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_">atob</span>(encryptedText);
+    }
+}
+
+<span class="hljs-comment">// Utilisation</span>
+<span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>,
+    <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+        <span class="hljs-title class_">SecureTokenStorage</span>.<span class="hljs-title function_">storeTokens</span>(tokens);
+    }
+});
+</code></pre>
+<h3 id="validation-des-tokens-côté-client">Validation des tokens côté client</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">TokenValidator</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">validateToken</span>(<span class="hljs-params">token</span>) {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">const</span> decoded = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">decodeJWT</span>(token);
+            <span class="hljs-keyword">const</span> currentTime = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() / <span class="hljs-number">1000</span>);
+
+            <span class="hljs-comment">// Vérifier l'expiration</span>
+            <span class="hljs-keyword">if</span> (decoded.<span class="hljs-property">exp</span> &amp;&amp; decoded.<span class="hljs-property">exp</span> &lt; currentTime) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'Token expiré'</span>);
+            }
+
+            <span class="hljs-comment">// Vérifier l'émetteur</span>
+            <span class="hljs-keyword">if</span> (decoded.<span class="hljs-property">iss</span> &amp;&amp; !decoded.<span class="hljs-property">iss</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">'bj-pass.com'</span>)) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'Émetteur de token invalide'</span>);
+            }
+
+            <span class="hljs-comment">// Vérifier l'audience</span>
+            <span class="hljs-keyword">if</span> (decoded.<span class="hljs-property">aud</span> &amp;&amp; decoded.<span class="hljs-property">aud</span> !== <span class="hljs-string">'your-client-id'</span>) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'Audience de token invalide'</span>);
+            }
+
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        } <span class="hljs-keyword">catch</span> (error) {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">'Erreur de validation du token:'</span>, error);
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">decodeJWT</span>(<span class="hljs-params">token</span>) {
+        <span class="hljs-keyword">const</span> base64Url = token.<span class="hljs-title function_">split</span>(<span class="hljs-string">'.'</span>)[<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">const</span> base64 = base64Url.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/-/g</span>, <span class="hljs-string">'+'</span>).<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/_/g</span>, <span class="hljs-string">'/'</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">atob</span>(base64));
+    }
+}
+
+<span class="hljs-comment">// Utilisation</span>
+<span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>,
+    <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (<span class="hljs-title class_">TokenValidator</span>.<span class="hljs-title function_">validateToken</span>(tokens.<span class="hljs-property">access_token</span>)) {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Token validé avec succès'</span>);
+            <span class="hljs-comment">// Procéder avec l'authentification</span>
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">'Token invalide'</span>);
+            <span class="hljs-comment">// Gérer l'erreur</span>
+        }
+    }
+});
+</code></pre>
+<h2 id="protection-contre-les-attaques">Protection contre les attaques</h2>
+<h3 id="protection-csrf">Protection CSRF</h3>
+<p>Le widget utilise automatiquement le paramètre <code>state</code> pour la protection CSRF.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Le widget génère automatiquement un state unique</span>
+<span class="hljs-comment">// et le valide lors de l'échange de tokens</span>
+<span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>,
+    <span class="hljs-comment">// La protection CSRF est activée par défaut</span>
+});
+</code></pre>
+<h3 id="protection-contre-les-attaques-de-clickjacking">Protection contre les attaques de clickjacking</h3>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Le widget utilise des techniques pour détecter</span>
+<span class="hljs-comment">// et prévenir les attaques de clickjacking</span>
+<span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>,
+    <span class="hljs-comment">// Protection automatique activée</span>
+});
+</code></pre>
+<h3 id="validation-des-origines">Validation des origines</h3>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Le widget valide automatiquement les origines</span>
+<span class="hljs-comment">// pour prévenir les attaques de redirection</span>
+<span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>,
+    <span class="hljs-attr">redirectUri</span>: <span class="hljs-string">"https://yourdomain.com/auth/callback"</span>,
+    <span class="hljs-comment">// Validation d'origine automatique</span>
+});
+</code></pre>
+<h2 id="logging-de-sécurité">Logging de sécurité</h2>
+<h3 id="événements-de-sécurité">Événements de sécurité</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SecurityLogger</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">logSecurityEvent</span>(<span class="hljs-params">eventType, data</span>) {
+        <span class="hljs-keyword">const</span> logEntry = {
+            <span class="hljs-attr">timestamp</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toISOString</span>(),
+            <span class="hljs-attr">eventType</span>: eventType,
+            <span class="hljs-attr">data</span>: data,
+            <span class="hljs-attr">userAgent</span>: navigator.<span class="hljs-property">userAgent</span>,
+            <span class="hljs-attr">url</span>: <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span>,
+            <span class="hljs-attr">sessionId</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getSessionId</span>()
+        };
+
+        <span class="hljs-comment">// Log local</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Security Event:'</span>, logEntry);
+
+        <span class="hljs-comment">// Envoi au service de sécurité</span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">sendToSecurityService</span>(logEntry);
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">logAuthAttempt</span>(<span class="hljs-params">success, details</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">logSecurityEvent</span>(<span class="hljs-string">'auth_attempt'</span>, {
+            <span class="hljs-attr">success</span>: success,
+            <span class="hljs-attr">details</span>: details
+        });
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">logTokenValidation</span>(<span class="hljs-params">success, tokenInfo</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">logSecurityEvent</span>(<span class="hljs-string">'token_validation'</span>, {
+            <span class="hljs-attr">success</span>: success,
+            <span class="hljs-attr">tokenInfo</span>: tokenInfo
+        });
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">logSecurityViolation</span>(<span class="hljs-params">violationType, details</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">logSecurityEvent</span>(<span class="hljs-string">'security_violation'</span>, {
+            <span class="hljs-attr">violationType</span>: violationType,
+            <span class="hljs-attr">details</span>: details
+        });
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">getSessionId</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">'session_id'</span>) || <span class="hljs-string">'unknown'</span>;
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">sendToSecurityService</span>(<span class="hljs-params">logEntry</span>) {
+        <span class="hljs-comment">// Envoi sécurisé au service de monitoring</span>
+        <span class="hljs-title function_">fetch</span>(<span class="hljs-string">'/api/security/logs'</span>, {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
+                <span class="hljs-string">'X-Security-Token'</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getSecurityToken</span>()
+            },
+            <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(logEntry)
+        }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">'Erreur lors de l\'envoi du log de sécurité:'</span>, error);
+        });
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">getSecurityToken</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-comment">// Récupérer le token de sécurité pour l'API</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">'security_token'</span>) || <span class="hljs-string">''</span>;
+    }
+}
+
+<span class="hljs-comment">// Utilisation</span>
+<span class="hljs-keyword">const</span> widget = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BjPassAuthWidget</span>({
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"your-client-id"</span>,
+    <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+        <span class="hljs-title class_">SecurityLogger</span>.<span class="hljs-title function_">logAuthAttempt</span>(<span class="hljs-literal">true</span>, {
+            <span class="hljs-attr">clientId</span>: <span class="hljs-string">'your-client-id'</span>,
+            <span class="hljs-attr">hasAccessToken</span>: !!tokens.<span class="hljs-property">access_token</span>
+        });
+    },
+    <span class="hljs-attr">onError</span>: <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+        <span class="hljs-title class_">SecurityLogger</span>.<span class="hljs-title function_">logAuthAttempt</span>(<span class="hljs-literal">false</span>, {
+            <span class="hljs-attr">errorCode</span>: error.<span class="hljs-property">code</span>,
+            <span class="hljs-attr">errorMessage</span>: error.<span class="hljs-property">message</span>
+        });
+    }
+});
+</code></pre>
+<h2 id="configuration-de-sécurité-par-environnement">Configuration de sécurité par environnement</h2>
+<h3 id="configuration-de-développement">Configuration de développement</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> devSecurityConfig = {
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"dev-client-id"</span>,
+    <span class="hljs-attr">environment</span>: <span class="hljs-string">"test"</span>,
+
+    <span class="hljs-comment">// Sécurité de base</span>
+    <span class="hljs-attr">pkce</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">verifyAccessToken</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// Désactivé en dev pour les tests</span>
+
+    <span class="hljs-comment">// Logging détaillé</span>
+    <span class="hljs-attr">debug</span>: <span class="hljs-literal">true</span>,
+
+    <span class="hljs-comment">// UI de développement</span>
+    <span class="hljs-attr">ui</span>: {
+        <span class="hljs-attr">showEnvSelector</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">theme</span>: <span class="hljs-string">"dark"</span>
+    }
+};
+</code></pre>
+<h3 id="configuration-de-production">Configuration de production</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> prodSecurityConfig = {
+    <span class="hljs-attr">clientId</span>: <span class="hljs-string">"prod-client-id"</span>,
+    <span class="hljs-attr">environment</span>: <span class="hljs-string">"production"</span>,
+
+    <span class="hljs-comment">// Sécurité maximale</span>
+    <span class="hljs-attr">pkce</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">verifyAccessToken</span>: <span class="hljs-literal">true</span>,
+
+    <span class="hljs-comment">// Pas de debug en production</span>
+    <span class="hljs-attr">debug</span>: <span class="hljs-literal">false</span>,
+
+    <span class="hljs-comment">// UI de production</span>
+    <span class="hljs-attr">ui</span>: {
+        <span class="hljs-attr">showEnvSelector</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">theme</span>: <span class="hljs-string">"modern"</span>
+    },
+
+    <span class="hljs-comment">// Callbacks sécurisés</span>
+    <span class="hljs-attr">onSuccess</span>: <span class="hljs-function">(<span class="hljs-params">tokens</span>) =&gt;</span> {
+        <span class="hljs-comment">// Validation stricte</span>
+        <span class="hljs-keyword">if</span> (!<span class="hljs-title class_">TokenValidator</span>.<span class="hljs-title function_">validateToken</span>(tokens.<span class="hljs-property">access_token</span>)) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'Token invalide reçu'</span>);
+        }
+
+        <span class="hljs-comment">// Stockage sécurisé</span>
+        <span class="hljs-title class_">SecureTokenStorage</span>.<span class="hljs-title function_">storeTokens</span>(tokens);
+
+        <span class="hljs-comment">// Logging de sécurité</span>
+        <span class="hljs-title class_">SecurityLogger</span>.<span class="hljs-title function_">logAuthAttempt</span>(<span class="hljs-literal">true</span>, {
+            <span class="hljs-attr">clientId</span>: <span class="hljs-string">'prod-client-id'</span>
+        });
+    },
+
+    <span class="hljs-attr">onError</span>: <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+        <span class="hljs-comment">// Logging des erreurs de sécurité</span>
+        <span class="hljs-title class_">SecurityLogger</span>.<span class="hljs-title function_">logSecurityViolation</span>(<span class="hljs-string">'auth_error'</span>, {
+            <span class="hljs-attr">errorCode</span>: error.<span class="hljs-property">code</span>,
+            <span class="hljs-attr">errorMessage</span>: error.<span class="hljs-property">message</span>
+        });
+    }
+};
+</code></pre>
+<h2 id="audit-de-sécurité">Audit de sécurité</h2>
+<h3 id="checklist-de-sécurité">Checklist de sécurité</h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SecurityAuditor</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">runSecurityCheck</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">const</span> checks = [
+            {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">'HTTPS'</span>,
+                <span class="hljs-attr">check</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">protocol</span> === <span class="hljs-string">'https:'</span>,
+                <span class="hljs-attr">critical</span>: <span class="hljs-literal">true</span>
+            },
+            {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">'PKCE Enabled'</span>,
+                <span class="hljs-attr">check</span>: <span class="hljs-function">() =&gt;</span> {
+                    <span class="hljs-keyword">const</span> widget = <span class="hljs-variable language_">window</span>.<span class="hljs-property">bjPassWidget</span>;
+                    <span class="hljs-keyword">return</span> widget &amp;&amp; widget.<span class="hljs-title function_">getConfig</span>().<span class="hljs-property">pkce</span>;
+                },
+                <span class="hljs-attr">critical</span>: <span class="hljs-literal">true</span>
+            },
+            {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">'Secure Token Storage'</span>,
+                <span class="hljs-attr">check</span>: <span class="hljs-function">() =&gt;</span> {
+                    <span class="hljs-keyword">const</span> accessToken = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">'access_token'</span>);
+                    <span class="hljs-keyword">return</span> !accessToken || accessToken.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">'encrypted_'</span>);
+                },
+                <span class="hljs-attr">critical</span>: <span class="hljs-literal">true</span>
+            },
+            {
+                <span class="hljs-attr">name</span>: <span class="hljs-string">'Debug Disabled in Production'</span>,
+                <span class="hljs-attr">check</span>: <span class="hljs-function">() =&gt;</span> {
+                    <span class="hljs-keyword">const</span> widget = <span class="hljs-variable language_">window</span>.<span class="hljs-property">bjPassWidget</span>;
+                    <span class="hljs-keyword">return</span> !widget || !widget.<span class="hljs-title function_">getConfig</span>().<span class="hljs-property">debug</span>;
+                },
+                <span class="hljs-attr">critical</span>: <span class="hljs-literal">false</span>
+            }
+        ];
+
+        <span class="hljs-keyword">const</span> results = {};
+        <span class="hljs-keyword">let</span> allPassed = <span class="hljs-literal">true</span>;
+
+        checks.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">check</span> =&gt;</span> {
+            <span class="hljs-keyword">try</span> {
+                results[check.<span class="hljs-property">name</span>] = check.<span class="hljs-title function_">check</span>();
+                <span class="hljs-keyword">if</span> (!results[check.<span class="hljs-property">name</span>] &amp;&amp; check.<span class="hljs-property">critical</span>) {
+                    allPassed = <span class="hljs-literal">false</span>;
+                }
+            } <span class="hljs-keyword">catch</span> (error) {
+                results[check.<span class="hljs-property">name</span>] = <span class="hljs-literal">false</span>;
+                <span class="hljs-keyword">if</span> (check.<span class="hljs-property">critical</span>) {
+                    allPassed = <span class="hljs-literal">false</span>;
+                }
+            }
+        });
+
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-attr">passed</span>: allPassed,
+            <span class="hljs-attr">results</span>: results
+        };
+    }
+}
+
+<span class="hljs-comment">// Exécuter l'audit</span>
+<span class="hljs-keyword">const</span> auditResults = <span class="hljs-title class_">SecurityAuditor</span>.<span class="hljs-title function_">runSecurityCheck</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Résultats de l\'audit de sécurité:'</span>, auditResults);
+</code></pre>
+<h2 id="prochaines-étapes">Prochaines étapes</h2>
+<ul>
+<li><a href="troubleshooting.html">Dépannage</a> pour résoudre les problèmes de sécurité</li>
+<li><a href="compatibility.html">Compatibilité</a> pour les considérations de compatibilité</li>
+<li><a href="../advanced/error-handling.html">Gestion des erreurs</a> pour la gestion sécurisée des erreurs</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="compatibility.html" class="navigation navigation-prev " aria-label="Previous page: Compatibilité">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="troubleshooting.html" class="navigation navigation-next " aria-label="Next page: Dépannage">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Sécurité","level":"5.2","depth":1,"next":{"title":"Dépannage","level":"5.3","depth":1,"path":"additional-info/troubleshooting.md","ref":"additional-info/troubleshooting.md","articles":[]},"previous":{"title":"Compatibilité","level":"5.1","depth":1,"path":"additional-info/compatibility.md","ref":"additional-info/compatibility.md","articles":[]},"dir":"ltr"},"config":{"plugins":["highlight","theme-default"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{"theme":"github"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"yowedjamal","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"2.0.0","github":"https://github.com/yowedjamal/bj-pass","email":"yowedjamal@gmail.com"},"title":"bj-pass Authentication Widget","language":"fr","gitbook":"*","description":"Documentation complète du widget d'authentification bj-pass"},"file":{"path":"additional-info/security.md","mtime":"2025-08-08T12:06:40.742Z","type":"markdown"},"gitbook":{"version":"6.0.3","time":"2025-08-08T12:57:48.027Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
