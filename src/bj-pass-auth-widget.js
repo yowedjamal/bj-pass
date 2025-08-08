@@ -1471,3 +1471,15 @@ if (typeof window !== "undefined") {
     return BjPassWidgetFactory.create(config);
   };
 }
+
+// Export par défaut pour ES modules et UMD
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = BjPassAuthWidget;
+} else if (typeof define === 'function' && define.amd) {
+  define(() => BjPassAuthWidget);
+} else if (typeof exports !== 'undefined') {
+  exports.BjPassAuthWidget = BjPassAuthWidget;
+}
+
+// Export par défaut pour ES modules
+export default BjPassAuthWidget;

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Démonstration Widget TrustedX</title>
+    <title>Démonstration Widget BjPass</title>
     <style>
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -181,7 +181,7 @@
   </head>
   <body>
     <header>
-      <h1>Démonstration du Widget TrustedX</h1>
+      <h1>Démonstration du Widget BjPass</h1>
       <p>
         Intégration facile d'authentification sécurisée dans vos applications
       </p>
@@ -194,7 +194,7 @@
         <p>Ce cas d'usage montre comment initialiser un widget avec des paramètres par défaut pour un environnement de test.</p>
 
         <!-- Conteneur du widget -->
-        <div id="trustedx-auth-basic"></div>
+        <div id="bjpass-auth-basic"></div>
 
         <button id="init-basic-btn" class="btn">Initialiser le Widget de Base</button>
 
@@ -257,7 +257,7 @@
         </div>
 
         <!-- Conteneur du widget avancé -->
-        <div id="trustedx-auth-advanced"></div>
+        <div id="bjpass-auth-advanced"></div>
 
         <div class="token-display" id="advanced-token">
           <pre></pre>
@@ -277,8 +277,8 @@
 
         <div class="tab-content active" id="demo-tab">
           <div
-            id="trustedx-auth-declarative"
-            data-trustedx-widget='{
+            id="bjpass-auth-declarative"
+            data-bjpass-widget='{
               "environment": "test",
               "clientId": "declarative-demo",
               "scope": "openid profile",
@@ -295,8 +295,8 @@
         </div>
 
         <div class="tab-content" id="declarative-code-tab">
-          <pre><code>&lt;div id="trustedx-auth-declarative" 
-     data-trustedx-widget='{
+          <pre><code>&lt;div id="bjpass-auth-declarative" 
+     data-bjpass-widget='{
          "environment": "test",
          "clientId": "declarative-demo",
          "scope": "openid profile",
@@ -306,22 +306,23 @@
          }
      }'&gt;&lt;/div&gt;
 
-&lt;script src="trustedx-widget.min.js"&gt;&lt;/script&gt;</code></pre>
+&lt;script src="bjpass-widget.min.js"&gt;&lt;/script&gt;</code></pre>
         </div>
       </div>
     </div> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@1.0.0/dist/bj-pass-auth-widget.min.js"></script>
+    <!-- <script src="../src/bj-pass-auth-widget.js"></script> -->
+    <script src="../dist/bj-pass-auth-widget.min.js"></script>
     <script>
       // Configuration des environnements
       const ENVIRONMENTS = {
         test: {
-          baseUrl: "https://test.trustedx.example.com",
+          baseUrl: "https://test.bjpass.example.com",
           authServer: "test-server",
           description: "Environnement de test (sandbox)",
         },
         production: {
-          baseUrl: "https://trustedx.example.com",
+          baseUrl: "https://bjpass.example.com",
           authServer: "production-server",
           description: "Environnement de production",
         },
@@ -358,12 +359,12 @@
 
       // Cas d'usage 1 : Initialisation du widget de base
       document.getElementById("init-basic-btn").addEventListener("click", () => {
-        new TrustedXAuthWidget({
+        new BjPassAuthWidget({
           environment: "test",
           clientId: "demo-basic-client",
           scope: "openid profile",
           ui: {
-            container: "#trustedx-auth-basic",
+            container: "#bjpass-auth-basic",
             language: "fr",
           },
           onSuccess: (token) => {
@@ -387,9 +388,9 @@
         const beBearer = document.getElementById("be-bearer").value;
 
         // Vérifiez que le conteneur existe
-        const container = document.querySelector("#trustedx-auth-advanced");
+        const container = document.querySelector("#bjpass-auth-advanced");
         if (!container) {
-          console.error("Le conteneur #trustedx-auth-advanced est introuvable.");
+          console.error("Le conteneur #bjpass-auth-advanced est introuvable.");
           return;
         }
 
@@ -402,7 +403,7 @@
           beUrl: beUrl,
           beBearer: beBearer,
           ui: {
-            container: "#trustedx-auth-advanced",
+            container: "#bjpass-auth-advanced",
             primaryColor: primaryColor,
             language: "fr",
           },
@@ -417,22 +418,22 @@
 
         // Initialisation du widget
         try {
-          new TrustedXAuthWidget(config);
+          new BjPassAuthWidget(config);
         } catch (error) {
           console.error("Erreur lors de l'initialisation du widget :", error);
         }
       });
 
       // Gestion du widget déclaratif
-      document.addEventListener("trustedx-auth-success", (e) => {
-        if (e.detail.containerId === "trustedx-auth-declarative") {
+      document.addEventListener("bjpass-auth-success", (e) => {
+        if (e.detail.containerId === "bjpass-auth-declarative") {
           displayToken("declarative-token", e.detail.token);
           console.log("Declarative widget success:", e.detail.token);
         }
       });
 
-      document.addEventListener("trustedx-auth-error", (e) => {
-        if (e.detail.containerId === "trustedx-auth-declarative") {
+      document.addEventListener("bjpass-auth-error", (e) => {
+        if (e.detail.containerId === "bjpass-auth-declarative") {
           console.error("Declarative widget error:", e.detail.error);
         }
       });
