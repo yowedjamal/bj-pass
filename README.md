@@ -1,25 +1,16 @@
 # bj-pass Authentication Widget
 
-Widget d'authentification OAuth 2.0/OpenID Connect moderne et sécurisé pour les applications web.
+Widget d'authentification OAuth 2.0/OpenID Connect moderne et sécurisé pour les services bj-pass.
 
-## 📚 Documentation
+## 🚀 Installation
 
-La documentation complète est disponible dans le dossier `docs/` et peut être consultée de plusieurs façons :
-
-### 🌐 Consultation en ligne
-
-- **GitBook.com** : [https://yowedjamal.gitbook.io/bj-pass](https://yowedjamal.gitbook.io/bj-pass) (recommandé)
-- **GitHub Pages** : [https://yowedjamal.github.io/bj-pass](https://yowedjamal.github.io/bj-pass)
-
-## 🚀 Installation et utilisation
-
-### Via jsDelivr CDN (Recommandé)
+### Via CDN (Recommandé)
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@2.0.0/dist/bj-pass-auth-widget.min.js"></script>
 ```
 
-### Via npm
+### Via NPM
 
 ```bash
 npm install bj-pass-auth-widget
@@ -29,114 +20,219 @@ npm install bj-pass-auth-widget
 import BjPassAuthWidget from 'bj-pass-auth-widget';
 ```
 
-### Utilisation basique
+### Installation locale
+
+```bash
+git clone https://github.com/yowedjamal/bj-pass.git
+cd bj-pass
+npm install
+npm run build
+```
+
+## 📖 Utilisation
+
+### Configuration de base
 
 ```javascript
 const widget = new BjPassAuthWidget({
-    clientId: 'your-client-id',
-    onSuccess: (tokens) => {
-        console.log('Authentification réussie !', tokens);
-    },
-    onError: (error) => {
-        console.error('Erreur:', error);
-    }
+  clientId: 'votre-client-id',
+  environment: 'test', // ou 'production'
+  onSuccess: (tokens) => {
+    console.log('Authentification réussie:', tokens);
+  },
+  onError: (error) => {
+    console.error('Erreur:', error);
+  }
 });
 ```
 
-### 🏃‍♂️ Consultation locale
+### Configuration avancée
 
-```bash
-# Installer Honkit
-npm install -g honkit
-
-# Aller dans le dossier docs
-cd docs
-
-# Construire la documentation
-honkit build . ../_book
-
-# Servir localement
-honkit serve . ../_book
+```javascript
+const widget = new BjPassAuthWidget({
+  clientId: 'votre-client-id',
+  environment: 'production',
+  scope: 'openid profile email',
+  redirectUri: 'https://votre-domaine.com/auth/callback',
+  pkce: true,
+  verifyAccessToken: true,
+  ui: {
+    primaryColor: '#0066cc',
+    language: 'fr',
+    theme: 'default'
+  },
+  onSuccess: (tokens) => {
+    // Gérer le succès
+  },
+  onError: (error) => {
+    // Gérer l'erreur
+  }
+});
 ```
 
-La documentation sera alors accessible sur `http://localhost:4000`
+### Auto-initialisation
 
-## 🚀 Déploiement
-
-### Déploiement automatique
-
-Le projet inclut des configurations pour plusieurs plateformes :
-
-- **GitHub Pages** : Workflow GitHub Actions dans `.github/workflows/deploy.yml`
-- **Netlify** : Configuration dans `netlify.toml`
-- **Vercel** : Configuration dans `vercel.json`
-
-### Déploiement manuel
-
-Consultez le guide complet dans [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
-
-## 📁 Structure de la documentation
-
-```
-docs/
-├── README.md                    # Introduction
-├── SUMMARY.md                   # Table des matières
-├── book.json                    # Configuration GitBook
-├── getting-started/             # Guide de démarrage
-│   ├── installation.md
-│   ├── usage.md
-│   └── configuration.md
-├── api-reference/               # Référence API
-│   ├── core-api.md
-│   ├── enhanced-api.md
-│   ├── factory-api.md
-│   └── hooks.md
-├── advanced/                    # Fonctionnalités avancées
-│   ├── plugins.md
-│   ├── error-handling.md
-│   └── examples.md
-├── additional-info/             # Informations supplémentaires
-│   ├── compatibility.md
-│   ├── security.md
-│   └── troubleshooting.md
-└── DEPLOYMENT.md               # Guide de déploiement
+```html
+<div id="auth-container" data-bjpass-widget='{"clientId": "votre-client-id"}'>
+</div>
 ```
 
-## 🔧 Développement
+## 🛠️ Développement
 
 ### Prérequis
 
-- Node.js 18+ (recommandé)
-- Honkit (alternative moderne à GitBook CLI)
+- Node.js >= 18.0.0
+- npm
 
-### Installation
+### Installation des dépendances
 
 ```bash
-# Cloner le repository
-git clone https://github.com/yowedjamal/bj-pass.git
-cd bj-pass
-
-# Installer Honkit
-npm install -g honkit
-
-# Construire la documentation
-cd docs
-honkit build . ../_book
+npm install
 ```
 
-### Modification de la documentation
+### Build
 
-1. Modifiez les fichiers Markdown dans `docs/`
-2. Testez localement : `honkit serve . ../_book`
-3. Committez et poussez vos changements
-4. Le déploiement se fera automatiquement
+```bash
+# Build de production
+npm run build
+
+# Build de développement
+npm run build:dev
+
+# Mode développement avec watch
+npm run dev
+```
+
+### Tests
+
+```bash
+# Tests unitaires
+npm test
+
+# Linting
+npm run lint
+
+# Formatage
+npm run format
+```
+
+## 📁 Structure du projet
+
+```
+.
+├── src/
+│   └── bj-pass-auth-widget.js    # Code source principal
+├── dist/                         # Fichiers construits (générés)
+├── docs/                         # Documentation GitBook
+├── examples/                     # Exemples d'utilisation
+├── webpack.config.js            # Configuration Webpack
+├── package.json                 # Configuration npm
+└── README.md                    # Ce fichier
+```
+
+## 🔧 Configuration
+
+### Options principales
+
+| Option | Type | Défaut | Description |
+|--------|------|--------|-------------|
+| `clientId` | string | - | **Requis** - ID client OAuth |
+| `environment` | string | 'test' | Environnement ('test' ou 'production') |
+| `scope` | string | 'openid profile' | Scopes OAuth |
+| `redirectUri` | string | auto | URI de redirection |
+| `pkce` | boolean | true | Activer PKCE |
+| `verifyAccessToken` | boolean | false | Vérifier le token d'accès |
+
+### Options UI
+
+| Option | Type | Défaut | Description |
+|--------|------|--------|-------------|
+| `ui.primaryColor` | string | '#0066cc' | Couleur principale |
+| `ui.language` | string | 'fr' | Langue ('fr' ou 'en') |
+| `ui.theme` | string | 'default' | Thème ('default', 'dark', 'modern', 'minimal') |
+| `ui.showEnvSelector` | boolean | true | Afficher le sélecteur d'environnement |
+
+## 🔌 API
+
+### Méthodes principales
+
+```javascript
+// Démarrer l'authentification
+widget.startAuthFlow();
+
+// Vérifier si authentifié
+const isAuth = widget.isAuthenticated();
+
+// Obtenir les tokens
+const tokens = widget.getTokens();
+
+// Mettre à jour la configuration
+widget.updateConfig({ environment: 'production' });
+
+// Détruire le widget
+widget.destroy();
+```
+
+### Callbacks
+
+```javascript
+const widget = new BjPassAuthWidget({
+  onSuccess: (tokens) => {
+    // Appelé lors d'une authentification réussie
+  },
+  onError: (error) => {
+    // Appelé lors d'une erreur
+  }
+});
+```
+
+## 🎨 Thèmes disponibles
+
+- **default** : Thème classique bleu
+- **dark** : Thème sombre
+- **modern** : Thème moderne avec indigo
+- **minimal** : Thème minimaliste noir et blanc
+
+## 🔒 Sécurité
+
+- **PKCE** : Proof Key for Code Exchange activé par défaut
+- **Validation des tokens** : Validation automatique des ID tokens
+- **Gestion sécurisée des popups** : Protection contre les attaques XSS
+- **Validation du state** : Protection contre les attaques CSRF
+
+## 🌐 Compatibilité
+
+- **Navigateurs** : Chrome 60+, Firefox 55+, Safari 12+, Edge 79+
+- **Environnements** : Browser, Node.js, Webpack, Vite
+- **Frameworks** : React, Vue.js, Angular, vanilla JS
+
+## 📚 Documentation complète
+
+Consultez la [documentation complète](docs/) pour plus de détails sur :
+- API de référence
+- Exemples avancés
+- Gestion des erreurs
+- Intégration avec des frameworks
+- Déploiement
+
+## 🤝 Contribution
+
+1. Fork le projet
+2. Créez une branche (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -am 'Ajout nouvelle fonctionnalité'`)
+4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Créez une Pull Request
+
+## 📄 Licence
+
+MIT License - voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ## 📞 Support
 
 - **Email** : yowedjamal@gmail.com
-- **GitHub** : [https://github.com/yowedjamal/bj-pass](https://github.com/yowedjamal/bj-pass)
-- **Documentation** : [https://yowedjamal.gitbook.io/bj-pass](https://yowedjamal.gitbook.io/bj-pass)
+- **GitHub** : [yowedjamal/bj-pass](https://github.com/yowedjamal/bj-pass)
+- **Issues** : [GitHub Issues](https://github.com/yowedjamal/bj-pass/issues)
 
-## 📄 Licence
+---
 
-© 2024 bj-pass - Tous droits réservés 
+© 2024 bj-pass - Développé avec ❤️ par yowedjamal 
