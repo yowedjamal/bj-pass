@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bj-pass Authentication Widget - Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .widget-container {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px dashed #0066cc;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .code-block {
+            background: #f1f3f4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .info {
+            color: #0066cc;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔐 bj-pass Authentication Widget</h1>
+    <p>Démonstration du widget d'authentification OAuth 2.0/OpenID Connect</p>
+
+    <div class="demo-section">
+        <h2>📦 Installation via jsDelivr CDN</h2>
+        <div class="code-block">
+&lt;script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@2.0.0/dist/bj-pass-auth-widget.min.js"&gt;&lt;/script&gt;
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🚀 Utilisation basique</h2>
+        <div class="widget-container" id="basic-widget"></div>
+        <div class="code-block">
+const widget = new BjPassAuthWidget({
+    clientId: 'demo-client-id',
+    debug: true,
+    onSuccess: (tokens) => {
+        console.log('✅ Authentification réussie !', tokens);
+    },
+    onError: (error) => {
+        console.error('❌ Erreur:', error);
+    }
+});
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>🎨 Configuration personnalisée</h2>
+        <div class="widget-container" id="custom-widget"></div>
+        <div class="code-block">
+const customWidget = new BjPassAuthWidget({
+    clientId: 'demo-client-id',
+    environment: 'test',
+    ui: {
+        language: 'fr',
+        primaryColor: '#4f46e5',
+        theme: 'modern'
+    },
+    debug: true,
+    onSuccess: (tokens) => {
+        console.log('✅ Custom widget - Authentification réussie !', tokens);
+    }
+});
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>⚡ Auto-initialisation</h2>
+        <div class="widget-container">
+            <div id="auto-widget" 
+                 data-bj-pass-widget 
+                 data-bj-pass-config='{"clientId": "demo-client-id", "debug": true, "ui": {"primaryColor": "#dc3545"}}'>
+            </div>
+        </div>
+        <div class="code-block">
+&lt;div id="auto-widget" 
+     data-bj-pass-widget 
+     data-bj-pass-config='{"clientId": "demo-client-id", "debug": true}'&gt;
+&lt;/div&gt;
+        </div>
+    </div>
+
+    <div class="demo-section">
+        <h2>📊 État du widget</h2>
+        <div id="widget-status">
+            <p><span class="info">État:</span> <span id="auth-status">Non connecté</span></p>
+            <p><span class="info">Tokens:</span> <span id="tokens-display">Aucun</span></p>
+        </div>
+        <button onclick="checkStatus()">Vérifier l'état</button>
+        <button onclick="destroyWidget()">Détruire le widget</button>
+    </div>
+
+    <!-- Chargement du widget depuis jsDelivr -->
+    <script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@2.0.0/dist/bj-pass-auth-widget.min.js"></script>
+    
+    <script>
+        // Widget basique
+        const widget = new BjPassAuthWidget({
+            clientId: 'demo-client-id',
+            debug: true,
+            onSuccess: (tokens) => {
+                console.log('✅ Authentification réussie !', tokens);
+                updateStatus('Connecté', JSON.stringify(tokens, null, 2));
+            },
+            onError: (error) => {
+                console.error('❌ Erreur:', error);
+                updateStatus('Erreur', error.message);
+            }
+        });
+
+        // Widget personnalisé
+        const customWidget = new BjPassAuthWidget({
+            clientId: 'demo-client-id',
+            environment: 'test',
+            ui: {
+                container: '#custom-widget',
+                language: 'fr',
+                primaryColor: '#4f46e5',
+                theme: 'modern'
+            },
+            debug: true,
+            onSuccess: (tokens) => {
+                console.log('✅ Custom widget - Authentification réussie !', tokens);
+                updateStatus('Connecté (Custom)', JSON.stringify(tokens, null, 2));
+            },
+            onError: (error) => {
+                console.error('❌ Custom widget - Erreur:', error);
+                updateStatus('Erreur (Custom)', error.message);
+            }
+        });
+
+        // Fonctions utilitaires
+        function updateStatus(status, tokens) {
+            document.getElementById('auth-status').textContent = status;
+            document.getElementById('tokens-display').textContent = tokens;
+            
+            if (status.includes('Connecté')) {
+                document.getElementById('auth-status').className = 'success';
+            } else if (status.includes('Erreur')) {
+                document.getElementById('auth-status').className = 'error';
+            }
+        }
+
+        function checkStatus() {
+            const isAuth = widget.isAuthenticated();
+            const tokens = widget.getTokens();
+            
+            updateStatus(
+                isAuth ? 'Connecté' : 'Non connecté',
+                tokens ? JSON.stringify(tokens, null, 2) : 'Aucun'
+            );
+        }
+
+        function destroyWidget() {
+            widget.destroy();
+            updateStatus('Widget détruit', 'Aucun');
+        }
+
+        // Log de démarrage
+        console.log('🚀 bj-pass Widget Demo chargé !');
+        console.log('📖 Documentation: https://yowedjamal.gitbook.io/bj-pass');
+        console.log('📦 NPM: https://www.npmjs.com/package/bj-pass-auth-widget');
+        console.log('🌐 CDN: https://cdn.jsdelivr.net/npm/bj-pass-auth-widget');
+    </script>
+</body>
+</html> 

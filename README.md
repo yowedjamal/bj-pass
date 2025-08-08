@@ -11,6 +11,38 @@ La documentation complète est disponible dans le dossier `docs/` et peut être 
 - **GitBook.com** : [https://yowedjamal.gitbook.io/bj-pass](https://yowedjamal.gitbook.io/bj-pass) (recommandé)
 - **GitHub Pages** : [https://yowedjamal.github.io/bj-pass](https://yowedjamal.github.io/bj-pass)
 
+## 🚀 Installation et utilisation
+
+### Via jsDelivr CDN (Recommandé)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@2.0.0/dist/bj-pass-auth-widget.min.js"></script>
+```
+
+### Via npm
+
+```bash
+npm install bj-pass-auth-widget
+```
+
+```javascript
+import BjPassAuthWidget from 'bj-pass-auth-widget';
+```
+
+### Utilisation basique
+
+```javascript
+const widget = new BjPassAuthWidget({
+    clientId: 'your-client-id',
+    onSuccess: (tokens) => {
+        console.log('Authentification réussie !', tokens);
+    },
+    onError: (error) => {
+        console.error('Erreur:', error);
+    }
+});
+```
+
 ### 🏃‍♂️ Consultation locale
 
 ```bash
