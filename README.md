@@ -7,7 +7,7 @@ Widget d'authentification OAuth 2.0/OpenID Connect moderne et sécurisé pour le
 ### Via CDN (Recommandé)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@1.0.3/dist/bj-pass-auth-widget.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@1.0.5/dist/bj-pass-auth-widget.min.js"></script>
 ```
 
 ### Via NPM
