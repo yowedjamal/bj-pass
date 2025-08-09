@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm install -g honkit && cd docs && honkit build . ../_book",
+  "buildCommand": "npm install -g honkit && cd docs && honkit build . ../_book && cp redirect.html ../_book/redirect.html",
   "outputDirectory": "_book",
   "framework": null,
   "installCommand": "echo 'No install needed'",

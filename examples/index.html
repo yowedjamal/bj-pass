@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -191,12 +191,17 @@
       <!-- Cas d'usage 1 : Intégration de base -->
       <div class="demo-card">
         <h2>Cas d'usage 1 : Intégration de base</h2>
-        <p>Ce cas d'usage montre comment initialiser un widget avec des paramètres par défaut pour un environnement de test.</p>
+        <p>
+          Ce cas d'usage montre comment initialiser un widget avec des
+          paramètres par défaut pour un environnement de test.
+        </p>
 
         <!-- Conteneur du widget -->
         <div id="bjpass-auth-basic"></div>
 
-        <button id="init-basic-btn" class="btn">Initialiser le Widget de Base</button>
+        <button id="init-basic-btn" class="btn">
+          Initialiser le Widget de Base
+        </button>
 
         <div class="token-display" id="basic-token">
           <pre></pre>
@@ -206,7 +211,10 @@
       <!-- Cas d'usage 2 : Configuration avancée -->
       <div class="demo-card">
         <h2>Cas d'usage 2 : Configuration avancée</h2>
-        <p>Personnalisez les paramètres du widget selon vos besoins, comme l'environnement, le client ID, et la couleur principale.</p>
+        <p>
+          Personnalisez les paramètres du widget selon vos besoins, comme
+          l'environnement, le client ID, et la couleur principale.
+        </p>
 
         <div class="config-form">
           <div class="form-group">
@@ -230,7 +238,11 @@
 
           <div class="form-group">
             <label for="auth-server">Auth Server (optionnel) :</label>
-            <input type="text" id="auth-server" placeholder="Laisser vide pour valeur par défaut" />
+            <input
+              type="text"
+              id="auth-server"
+              placeholder="Laisser vide pour valeur par défaut"
+            />
           </div>
 
           <div class="form-group">
@@ -245,7 +257,11 @@
 
           <div class="form-group">
             <label for="be-url">Backend URL (beUrl) :</label>
-            <input type="text" id="be-url" placeholder="https://example.com/api/v1/code-exchange" />
+            <input
+              type="text"
+              id="be-url"
+              placeholder="https://example.com/api/v1/code-exchange"
+            />
           </div>
 
           <div class="form-group">
@@ -253,7 +269,9 @@
             <input type="text" id="be-bearer" placeholder="Bearer token" />
           </div>
 
-          <button id="init-advanced-btn" class="btn">Initialiser le Widget Avancé</button>
+          <button id="init-advanced-btn" class="btn">
+            Initialiser le Widget Avancé
+          </button>
         </div>
 
         <!-- Conteneur du widget avancé -->
@@ -312,7 +330,7 @@
     </div> -->
 
     <!-- <script src="../src/bj-pass-auth-widget.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@1.0.2/dist/bj-pass-auth-widget.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@1.0.3/dist/bj-pass-auth-widget.min.js"></script>
     <script>
       // Configuration des environnements
       const ENVIRONMENTS = {
@@ -358,71 +376,79 @@
       };
 
       // Cas d'usage 1 : Initialisation du widget de base
-      document.getElementById("init-basic-btn").addEventListener("click", () => {
-        new BjPassAuthWidget({
-          environment: "test",
-          clientId: "demo-basic-client",
-          scope: "openid profile",
-          ui: {
-            container: "#bjpass-auth-basic",
-            language: "fr",
-          },
-          onSuccess: (token) => {
-            displayToken("basic-token", token);
-            console.log("Succès du widget de base :", token);
-          },
-          onError: (error) => {
-            console.error("Erreur du widget de base :", error);
-          },
+      document
+        .getElementById("init-basic-btn")
+        .addEventListener("click", () => {
+          new BjPassAuthWidget({
+            environment: "test",
+            clientId: "demo-basic-client",
+            scope: "openid profile",
+            ui: {
+              container: "#bjpass-auth-basic",
+              language: "fr",
+            },
+            onSuccess: (token) => {
+              displayToken("basic-token", token);
+              console.log("Succès du widget de base :", token);
+            },
+            onError: (error) => {
+              console.error("Erreur du widget de base :", error);
+            },
+          });
         });
-      });
 
       // Cas d'usage 2 : Initialisation du widget avancé
-      document.getElementById("init-advanced-btn").addEventListener("click", () => {
-        const environment = document.querySelector('input[name="environment"]:checked').value;
-        const clientId = document.getElementById("client-id").value;
-        const authServer = document.getElementById("auth-server").value;
-        const scope = document.getElementById("scope").value;
-        const primaryColor = document.getElementById("primary-color").value;
-        const beUrl = document.getElementById("be-url").value;
-        const beBearer = document.getElementById("be-bearer").value;
+      document
+        .getElementById("init-advanced-btn")
+        .addEventListener("click", () => {
+          const environment = document.querySelector(
+            'input[name="environment"]:checked'
+          ).value;
+          const clientId = document.getElementById("client-id").value;
+          const authServer = document.getElementById("auth-server").value;
+          const scope = document.getElementById("scope").value;
+          const primaryColor = document.getElementById("primary-color").value;
+          const beUrl = document.getElementById("be-url").value;
+          const beBearer = document.getElementById("be-bearer").value;
 
-        // Vérifiez que le conteneur existe
-        const container = document.querySelector("#bjpass-auth-advanced");
-        if (!container) {
-          console.error("Le conteneur #bjpass-auth-advanced est introuvable.");
-          return;
-        }
+          // Vérifiez que le conteneur existe
+          const container = document.querySelector("#bjpass-auth-advanced");
+          if (!container) {
+            console.error(
+              "Le conteneur #bjpass-auth-advanced est introuvable."
+            );
+            return;
+          }
 
-        // Configuration du widget
-        const config = {
-          environment: environment,
-          clientId: clientId,
-          authServer: authServer || undefined,
-          scope: scope,
-          beUrl: beUrl,
-          beBearer: beBearer,
-          ui: {
-            container: "#bjpass-auth-advanced",
-            primaryColor: primaryColor,
-            language: "fr",
-          },
-          onSuccess: (token) => {
-            displayToken("advanced-token", token);
-            console.log("Succès du widget avancé :", token);
-          },
-          onError: (error) => {
-            console.error("Erreur du widget avancé :", error);
-          },
-        };
+          // Configuration du widget
+          const config = {
+            environment: environment,
+            clientId: clientId,
+            authServer: authServer || undefined,
+            scope: scope,
+            beUrl: beUrl,
+            beBearer: beBearer,
+            ui: {
+              container: "#bjpass-auth-advanced",
+              primaryColor: primaryColor,
+              language: "fr",
+            },
+            onSuccess: (token) => {
+              displayToken("advanced-token", token);
+              console.log("Succès du widget avancé :", token);
+            },
+            onError: (error) => {
+              console.error("Erreur du widget avancé :", error);
+            },
+          };
 
-        // Initialisation du widget
-        try {
-          new BjPassAuthWidget(config);
-        } catch (error) {
-          console.error("Erreur lors de l'initialisation du widget :", error);
-        }
-      });
+          // Initialisation du widget
+          try {
+            new BjPassAuthWidget(config);
+          } catch (error) {
+            console.error("Erreur lors de l'initialisation du widget :", error);
+          }
+        });
 
       // Gestion du widget déclaratif
       document.addEventListener("bjpass-auth-success", (e) => {
