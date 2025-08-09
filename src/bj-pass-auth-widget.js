@@ -160,7 +160,7 @@ class OAuthUrlBuilder {
     const codeChallenge = await CryptoUtils.generateCodeChallenge(codeVerifier);
 
     const authUrl = new URL(
-      `${this.config.baseUrl}/bjpass-authserver/oauth`
+      `${this.config.baseUrl}/trustedx-authserver/oauth`
     );
 
     if (this.config.authServer) {
@@ -187,17 +187,17 @@ class OAuthUrlBuilder {
   }
 
   buildTokenUrl() {
-    return `${this.config.baseUrl}/bjpass-authserver/oauth/${encodeURIComponent(
+    return `${this.config.baseUrl}/trustedx-authserver/oauth/${encodeURIComponent(
       this.config.authServer
     )}/token`;
   }
 
   buildJWKSUrl() {
-    return `${this.config.baseUrl}/bjpass-authserver/oauth/keys`;
+    return `${this.config.baseUrl}/trustedx-authserver/oauth/keys`;
   }
 
   buildIntrospectionUrl() {
-    return `${this.config.baseUrl}/bjpass-authserver/oauth/token/verify`;
+    return `${this.config.baseUrl}/trustedx-authserver/oauth/token/verify`;
   }
 }
 

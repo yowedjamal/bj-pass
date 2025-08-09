@@ -50,7 +50,7 @@ const widget = new BjPassAuthWidget({
 
 ### CDN
 ```html
-<script src="https://cdn.yourdomain.com/bj-pass-widget.js"></script>
+<script src="https://www.npmjs.com/package/bj-pass-auth-widget"></script>
 ```
 
 ### NPM
@@ -87,7 +87,7 @@ const widget = new BjPassAuthWidget({
 
 ## Support
 
-- **Documentation** : [GitHub Pages](https://yowedjamal.github.io/bj-pass-docs)
+- **Documentation** : [GitHub Pages](https://bj-pass.vercel.app)
 - **Issues** : [GitHub Issues](https://github.com/yowedjamal/bj-pass/issues)
 - **Contact** : [yowedjamal@gmail.com](mailto:yowedjamal@gmail.com)
 
