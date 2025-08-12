@@ -22,6 +22,7 @@ class ConfigManager {
         defaultAuthServer: "main-as",
       },
     };
+    
 
     this.defaultConfig = {
       environment: "test",
@@ -29,11 +30,14 @@ class ConfigManager {
       authServer: "",
       scope: "openid profile",
       redirectUri: "https://bj-pass.vercel.app/redirect.html",
+      // redirectUri: "http://127.0.0.1:5500/examples/redirect.html",
       pkce: true,
       verifyAccessToken: false,
       tokenVerificationScopes: ["urn:safelayer:eidas:oauth:token:introspect"],
-      beUrl: "http://localhost:8000/api/v1/code-exchange",
+      beUrl: "",
       beBearer: "",
+      header:{
+      },
       ui: {
         showEnvSelector: true,
         container: "#bjpass-auth-container",
@@ -679,6 +683,7 @@ class BackendClient {
         "Content-Type": "application/json",
         Authorization: this.config.beBearer,
         "x-tenant-id": "589l15lWQE",
+        ...this.config.header
       },
       body: JSON.stringify({
         code,
