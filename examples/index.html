@@ -283,54 +283,8 @@
       </div>
     </div>
 
-    <!-- <div class="demo-card" style="max-width: 900px; margin: 40px auto">
-      <h2>Intégration déclarative (HTML seule)</h2>
-      <p>Utilisation sans JavaScript grâce à l'auto-initialisation :</p>
-
-      <div class="tab-container">
-        <div class="tab-buttons">
-          <button class="tab-btn active" data-tab="demo">Démo</button>
-          <button class="tab-btn" data-tab="declarative-code">Code</button>
-        </div>
-
-        <div class="tab-content active" id="demo-tab">
-          <div
-            id="bjpass-auth-declarative"
-            data-bjpass-widget='{
-              "environment": "test",
-              "clientId": "declarative-demo",
-              "scope": "openid profile",
-              "ui": {
-                "primaryColor": "#28a745",
-                "showEnvSelector": true
-              }
-            }'
-          ></div>
-
-          <div class="token-display" id="declarative-token">
-            <pre></pre>
-          </div>
-        </div>
-
-        <div class="tab-content" id="declarative-code-tab">
-          <pre><code>&lt;div id="bjpass-auth-declarative" 
-     data-bjpass-widget='{
-         "environment": "test",
-         "clientId": "declarative-demo",
-         "scope": "openid profile",
-         "ui": {
-             "primaryColor": "#28a745",
-             "showEnvSelector": true
-         }
-     }'&gt;&lt;/div&gt;
-
-&lt;script src="bjpass-widget.min.js"&gt;&lt;/script&gt;</code></pre>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <script src="../src/bj-pass-auth-widget.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@1.0.6/dist/bj-pass-auth-widget.min.js"></script>
+    <script src="../dist/bj-pass-auth-widget.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@1.0.7/dist/bj-pass-auth-widget.min.js"></script> -->
     <script>
       // Configuration des environnements
       const ENVIRONMENTS = {
@@ -381,6 +335,9 @@
         .addEventListener("click", () => {
           new BjPassAuthWidget({
             environment: "test",
+            header:{
+              "X-Tenant-ID": '589l15lWQE'
+            },
             clientId: "demo-basic-client",
             scope: "openid profile",
             ui: {
@@ -428,6 +385,10 @@
             scope: scope,
             beUrl: beUrl,
             beBearer: beBearer,
+             header:{
+              "X-Tenant-ID": '589l15lWQE'
+            },
+            debug:true,
             ui: {
               container: "#bjpass-auth-advanced",
               primaryColor: primaryColor,
@@ -444,6 +405,8 @@
 
           // Initialisation du widget
           try {
+            console.log(config);
+            
             new BjPassAuthWidget(config);
           } catch (error) {
             console.error("Erreur lors de l'initialisation du widget :", error);
