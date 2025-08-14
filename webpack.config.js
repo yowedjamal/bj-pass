@@ -12,7 +12,7 @@ module.exports = {
       export: 'default',
       umdNamedDefine: true
     },
-    globalObject: 'window',
+    globalObject: 'this', // Changed from 'window' to 'this' for better SSR compatibility
     clean: true
   },
   module: {
@@ -58,7 +58,7 @@ module.exports = {
     extensions: ['.js']
   },
   externals: {
-    // Si vous utilisez des dépendances externes, déclarez-les ici
+    // Add any framework-specific externals if needed
   },
   devtool: 'source-map'
-}; 
+};
