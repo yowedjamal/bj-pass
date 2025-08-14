@@ -1036,8 +1036,6 @@ class BjPassAuthWidget {
 
     this.backendClient = new BackendClient(this.configManager.get());
     this.popupManager = new PopupManager();
-    this.config = this.configManager.get();
-
     // Check browser compatibility
     if (!CryptoUtils.checkBrowserCompatibility()) {
       throw new Error("Browser not supported. Please use a modern browser.");
@@ -1049,6 +1047,7 @@ class BjPassAuthWidget {
     // Setup global message listener
     this.setupMessageListener();
   }
+  
 
   initialize() {
     this.uiManager.initialize();
@@ -1106,9 +1105,11 @@ class BjPassAuthWidget {
 
   async startAuthFlow() {
     try {
+      const config = this.configManager.get();
+
       this.uiManager.setState({ isLoading: true, error: null });
 
-      if (this.config.useBackend) {
+      if (config.useBackend) {
         // Utiliser le backend pour l'authentification
         await this.backendClient.startBackendAuthFlow();
       } else {
