@@ -1,6 +1,6 @@
 {
   "name": "bj-pass-auth-widget",
-  "version": "1.0.8",
+  "version": "1.2.0",
   "description": "Widget d'authentification OAuth 2.0/OpenID Connect moderne et sécurisé",
   "main": "dist/bj-pass-auth-widget.min.js",
   "module": "dist/bj-pass-auth-widget.esm.js",
