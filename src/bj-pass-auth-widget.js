@@ -6,7 +6,6 @@
  * @license MIT
  */
 
-
 // =======================
 // Configuration Manager
 // =======================
@@ -22,29 +21,46 @@ class ConfigManager {
         defaultAuthServer: "main-as",
       },
     };
-    
 
     this.defaultConfig = {
       environment: "test",
       clientId: "",
       authServer: "",
       scope: "openid profile",
-      redirectUri: "https://bj-pass.vercel.app/redirect.html",
-      // redirectUri: "http://127.0.0.1:5500/examples/redirect.html",
+      redirectUri: "http://127.0.0.1:5500/examples/redirect.html",
+      // redirectUri: "https://bj-pass.vercel.app/redirect.html",
       pkce: true,
       verifyAccessToken: false,
       tokenVerificationScopes: ["urn:safelayer:eidas:oauth:token:introspect"],
       beUrl: "",
       beBearer: "",
-      header:{
-      },
+      header: {},
       ui: {
         showEnvSelector: true,
         container: "#bjpass-auth-container",
         language: "fr",
         primaryColor: "#0066cc",
-        theme: "default"
+        theme: "default",
       },
+
+      // NOUVELLES OPTIONS BACKEND
+      backendUrl: "https://your-backend.com", // URL de votre backend Laravel
+      backendEndpoints: {
+        start: "/auth/start", // Endpoint de démarrage
+        status: "/auth/api/status", // Vérification du statut
+        user: "/auth/api/user", // Informations utilisateur
+        logout: "/auth/api/logout", // Déconnexion
+        refresh: "/auth/api/refresh", // Rafraîchissement token
+      },
+
+      // Configuration de sécurité
+      frontendOrigin: "https://your-frontend.com", // Origine autorisée
+      backendOrigin: "https://your-backend.com", // Origine du backend
+
+      // Options de communication
+      useBackend: true, // Activer l'utilisation du backend
+      popupMode: true, // Mode popup recommandé
+      autoClosePopup: true, // Fermeture automatique après succès
     };
 
     this.config = { ...this.defaultConfig, ...userConfig };
@@ -132,7 +148,7 @@ class SessionManager {
 
   static clear() {
     const keys = ["state", "code_verifier", "nonce", "success"];
-    keys.forEach(key => this.removeItem(key));
+    keys.forEach((key) => this.removeItem(key));
   }
 
   static generateAndStoreAuthData(scope) {
@@ -142,7 +158,7 @@ class SessionManager {
 
     this.setItem("state", state);
     this.setItem("code_verifier", codeVerifier);
-    
+
     if (scope.includes("openid")) {
       this.setItem("nonce", nonce);
     }
@@ -163,9 +179,7 @@ class OAuthUrlBuilder {
     const { state, nonce, codeVerifier } = authData;
     const codeChallenge = await CryptoUtils.generateCodeChallenge(codeVerifier);
 
-    const authUrl = new URL(
-      `${this.config.baseUrl}/trustedx-authserver/oauth`
-    );
+    const authUrl = new URL(`${this.config.baseUrl}/trustedx-authserver/oauth`);
 
     if (this.config.authServer) {
       authUrl.pathname += `/${encodeURIComponent(this.config.authServer)}`;
@@ -325,7 +339,7 @@ class UIComponent {
     this.eventListeners = new Map();
   }
 
-  createElement(tag, className = '', innerHTML = '') {
+  createElement(tag, className = "", innerHTML = "") {
     const element = document.createElement(tag);
     if (className) element.className = className;
     if (innerHTML) element.innerHTML = innerHTML;
@@ -335,7 +349,7 @@ class UIComponent {
   addEventListeners(element, events) {
     Object.entries(events).forEach(([event, handler]) => {
       element.addEventListener(event, handler);
-      
+
       // Store for cleanup
       if (!this.eventListeners.has(element)) {
         this.eventListeners.set(element, []);
@@ -361,15 +375,15 @@ class UIComponent {
   }
 
   render() {
-    throw new Error('render() must be implemented by subclass');
+    throw new Error("render() must be implemented by subclass");
   }
 
   show() {
-    if (this.element) this.element.style.display = 'block';
+    if (this.element) this.element.style.display = "block";
   }
 
   hide() {
-    if (this.element) this.element.style.display = 'none';
+    if (this.element) this.element.style.display = "none";
   }
 }
 
@@ -387,23 +401,31 @@ class EnvironmentSelector extends UIComponent {
   render() {
     if (!this.config.ui.showEnvSelector) return;
 
-    const envOptions = this.config.getEnvironments()
-      .map(env => `
+    const envOptions = this.config
+      .getEnvironments()
+      .map(
+        (env) => `
         <label>
-          <input type="radio" name="env" value="${env}" ${env === this.config.get().environment ? 'checked' : ''}>
+          <input type="radio" name="env" value="${env}" ${env === this.config.get().environment ? "checked" : ""}>
           ${env.charAt(0).toUpperCase() + env.slice(1)}
         </label>
-      `).join('');
+      `
+      )
+      .join("");
 
-    this.element = this.createElement('div', 'bjpass-env-selector', `
+    this.element = this.createElement(
+      "div",
+      "bjpass-env-selector",
+      `
       <div class="env-selector-label">Environment:</div>
       ${envOptions}
-    `);
+    `
+    );
 
     const radioInputs = this.element.querySelectorAll('input[name="env"]');
-    radioInputs.forEach(radio => {
+    radioInputs.forEach((radio) => {
       this.addEventListeners(radio, {
-        change: (e) => this.onEnvironmentChange(e.target.value)
+        change: (e) => this.onEnvironmentChange(e.target.value),
       });
     });
 
@@ -420,8 +442,12 @@ class LoginButton extends UIComponent {
   }
 
   render() {
-    this.element = this.createElement('button', 'bjpass-login-btn', 'Se connecter');
-    this.element.type = 'button';
+    this.element = this.createElement(
+      "button",
+      "bjpass-login-btn",
+      "Se connecter"
+    );
+    this.element.type = "button";
     this.element.style.cssText = `
       width: 100%;
       padding: 12px 24px;
@@ -437,11 +463,11 @@ class LoginButton extends UIComponent {
     this.addEventListeners(this.element, {
       click: this.onLogin,
       mouseover: () => {
-        this.element.style.opacity = '0.9';
+        this.element.style.opacity = "0.9";
       },
       mouseout: () => {
-        this.element.style.opacity = '1';
-      }
+        this.element.style.opacity = "1";
+      },
     });
 
     this.container.appendChild(this.element);
@@ -449,7 +475,7 @@ class LoginButton extends UIComponent {
 
   setLoading(isLoading) {
     this.element.disabled = isLoading;
-    this.element.innerHTML = isLoading ? 'Connexion...' : 'Se connecter';
+    this.element.innerHTML = isLoading ? "Connexion..." : "Se connecter";
   }
 }
 
@@ -460,18 +486,22 @@ class LoadingSpinner extends UIComponent {
   }
 
   render() {
-    this.element = this.createElement('div', 'bjpass-loading', `
+    this.element = this.createElement(
+      "div",
+      "bjpass-loading",
+      `
       <div class="spinner"></div>
       <div class="loading-text">Authentification en cours...</div>
-    `);
-    
+    `
+    );
+
     this.element.style.cssText = `
       display: none;
       text-align: center;
       padding: 20px;
     `;
 
-    const spinner = this.element.querySelector('.spinner');
+    const spinner = this.element.querySelector(".spinner");
     spinner.style.cssText = `
       border: 3px solid #f3f3f3;
       border-radius: 50%;
@@ -483,9 +513,9 @@ class LoadingSpinner extends UIComponent {
     `;
 
     // Add CSS animation
-    if (!document.getElementById('bjpass-spinner-styles')) {
-      const style = document.createElement('style');
-      style.id = 'bjpass-spinner-styles';
+    if (!document.getElementById("bjpass-spinner-styles")) {
+      const style = document.createElement("style");
+      style.id = "bjpass-spinner-styles";
       style.textContent = `
         @keyframes spin {
           0% { transform: rotate(0deg); }
@@ -507,7 +537,7 @@ class ErrorDisplay extends UIComponent {
   }
 
   render() {
-    this.element = this.createElement('div', 'bjpass-error');
+    this.element = this.createElement("div", "bjpass-error");
     this.element.style.cssText = `
       display: none;
       padding: 12px;
@@ -528,7 +558,7 @@ class ErrorDisplay extends UIComponent {
   }
 
   clearError() {
-    this.element.textContent = '';
+    this.element.textContent = "";
     this.hide();
   }
 }
@@ -543,7 +573,7 @@ class UIManager {
     this.components = {};
     this.state = {
       isLoading: false,
-      error: null
+      error: null,
     };
   }
 
@@ -558,8 +588,8 @@ class UIManager {
   }
 
   createMainContainer() {
-    this.mainElement = document.createElement('div');
-    this.mainElement.className = 'bjpass-widget';
+    this.mainElement = document.createElement("div");
+    this.mainElement.className = "bjpass-widget";
     this.mainElement.style.cssText = `
       max-width: 400px;
       margin: 0 auto;
@@ -569,8 +599,8 @@ class UIManager {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     `;
 
-    const title = document.createElement('h3');
-    title.textContent = 'Authentification BjPass';
+    const title = document.createElement("h3");
+    title.textContent = "Authentification BjPass";
     title.style.cssText = `
       color: ${this.config.ui.primaryColor};
       text-align: center;
@@ -584,15 +614,15 @@ class UIManager {
   initializeComponents() {
     // Environment selector
     this.components.envSelector = new EnvironmentSelector(
-      this.mainElement, 
-      this.config, 
+      this.mainElement,
+      this.config,
       this.onEnvironmentChange.bind(this)
     );
 
     // Login button
     this.components.loginButton = new LoginButton(
-      this.mainElement, 
-      this.config, 
+      this.mainElement,
+      this.config,
       this.onLoginClick.bind(this)
     );
 
@@ -600,11 +630,15 @@ class UIManager {
     this.components.loadingSpinner = new LoadingSpinner(this.mainElement);
 
     // Error display
-    this.components.errorDisplay = new ErrorDisplay(this.mainElement, this.config);
+    this.components.errorDisplay = new ErrorDisplay(
+      this.mainElement,
+      this.config
+    );
 
     // Help text
-    const helpText = document.createElement('p');
-    helpText.textContent = 'Vous serez redirigé vers le service d\'authentification sécurisée';
+    const helpText = document.createElement("p");
+    helpText.textContent =
+      "Vous serez redirigé vers le service d'authentification sécurisée";
     helpText.style.cssText = `
       text-align: center;
       margin: 15px 0 0 0;
@@ -639,7 +673,7 @@ class UIManager {
     } else {
       this.components.loginButton.setLoading(false);
       this.components.loadingSpinner.hide();
-      
+
       if (this.state.error) {
         this.components.errorDisplay.showError(this.state.error);
       } else {
@@ -649,10 +683,10 @@ class UIManager {
   }
 
   destroy() {
-    Object.values(this.components).forEach(component => {
+    Object.values(this.components).forEach((component) => {
       if (component.destroy) component.destroy();
     });
-    
+
     if (this.mainElement && this.mainElement.parentNode) {
       this.mainElement.parentNode.removeChild(this.mainElement);
     }
@@ -681,9 +715,7 @@ class BackendClient {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: this.config.beBearer,
-        "x-tenant-id": "589l15lWQE",
-        ...this.config.header
+        ...this.config.header,
       },
       body: JSON.stringify({
         code,
@@ -729,6 +761,181 @@ class BackendClient {
 
     return data;
   }
+
+  async handleBackendAuthResponse(data) {
+    try {
+      if (data.status === "success") {
+        // Authentification réussie
+        await this.handleBackendAuthSuccess(data);
+      } else {
+        // Erreur d'authentification
+        this.handleBackendAuthError(data);
+      }
+    } catch (error) {
+      this.handleError("callback_error", error.message);
+    }
+  }
+
+  async handleBackendAuthSuccess(data) {
+    try {
+      // Stocker les informations utilisateur
+      SessionManager.setItem("user", JSON.stringify(data.user));
+      SessionManager.setItem("success", "true");
+
+      // Fermer la popup
+      this.popupManager.close();
+
+      // Mettre à jour l'UI
+      this.uiManager.setState({ isLoading: false, error: null });
+
+      // Appeler le callback de succès
+      const config = this.configManager.get();
+      if (config.onSuccess) {
+        config.onSuccess({
+          user: data.user,
+          backendData: data,
+          source: "backend",
+        });
+      }
+
+      // Vérifier le statut via l'API backend
+      await this.verifyBackendStatus();
+    } catch (error) {
+      this.handleError("success_verification_error", error.message);
+    }
+  }
+
+  handleBackendAuthError(data) {
+    // Fermer la popup
+    this.popupManager.close();
+
+    // Afficher l'erreur
+    this.handleError(
+      data.error || "backend_error",
+      data.message || "Erreur d'authentification"
+    );
+
+    // Appeler le callback d'erreur
+    const config = this.configManager.get();
+    if (config.onError) {
+      config.onError({
+        error: data.error,
+        error_description: data.message,
+        source: "backend",
+      });
+    }
+  }
+
+  async verifyBackendStatus() {
+    try {
+      const config = this.configManager.get();
+      const statusUrl = new URL(
+        config.backendEndpoints.status,
+        config.backendUrl
+      );
+
+      const response = await fetch(statusUrl.toString(), {
+        method: "GET",
+        credentials: "include", // Inclure les cookies de session
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Status check failed: ${response.status}`);
+      }
+
+      const statusData = await response.json();
+
+      if (statusData.authenticated) {
+        // Mettre à jour les informations utilisateur
+        SessionManager.setItem("user", JSON.stringify(statusData.user));
+        SessionManager.setItem("authenticated", "true");
+
+        console.log("Backend status verified:", statusData);
+      } else {
+        // L'utilisateur n'est pas authentifié côté backend
+        SessionManager.clear();
+        throw new Error("User not authenticated on backend");
+      }
+    } catch (error) {
+      console.error("Backend status verification failed:", error);
+      throw error;
+    }
+  }
+
+  async startBackendAuthFlow() {
+    const config = this.configManager.get();
+
+    if (!config.backendUrl) {
+      throw new Error("Backend URL not configured");
+    }
+
+    // Construire l'URL de démarrage du backend
+    const startUrl = new URL(config.backendEndpoints.start, config.backendUrl);
+
+    // Ajouter des paramètres optionnels
+    if (config.returnUrl) {
+      startUrl.searchParams.set("return_url", config.returnUrl);
+    }
+
+    // Ouvrir la popup vers le backend
+    this.popupManager.open(startUrl.toString(), () => {
+      this.uiManager.setState({ isLoading: false });
+      if (!SessionManager.getItem("success")) {
+        this.handleError(
+          "popup_closed",
+          "La fenêtre d'authentification a été fermée"
+        );
+      }
+    });
+  }
+
+  async getUserInfoFromBackend() {
+    const config = this.configManager.get();
+    const userUrl = new URL(config.backendEndpoints.user, config.backendUrl);
+
+    const response = await fetch(userUrl.toString(), {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`User info request failed: ${response.status}`);
+    }
+
+    const userData = await response.json();
+    return userData.user;
+  }
+
+  async logoutFromBackend() {
+    const config = this.configManager.get();
+    const logoutUrl = new URL(
+      config.backendEndpoints.logout,
+      config.backendUrl
+    );
+
+    const response = await fetch(logoutUrl.toString(), {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Backend logout failed: ${response.status}`);
+    }
+
+    console.log("Backend logout successful");
+  }
 }
 
 // =======================
@@ -766,11 +973,11 @@ class PopupManager {
       clearInterval(this.checkInterval);
       this.checkInterval = null;
     }
-    
+
     if (this.popup && !this.popup.closed) {
       this.popup.close();
     }
-    
+
     this.popup = null;
   }
 
@@ -788,6 +995,7 @@ class ErrorHandler {
 
     const errorMessages = {
       invalid_token: "Token invalide ou expiré",
+      unsuported_grant_type_error: "Type de subvention OAuth invalide",
       insufficient_scope: "Permissions insuffisantes",
       invalid_grant: "Code d'autorisation invalide ou expiré",
       access_denied: "Authentification annulée",
@@ -797,7 +1005,8 @@ class ErrorHandler {
       popup_closed: "La fenêtre d'authentification a été fermée",
       browser_error: "Navigateur non supporté",
       backend_error: "Erreur du backend",
-      token_error: "Erreur de validation du token"
+      token_error: "Erreur de validation du token",
+      token_exchange_error: "Erreur lors de l'échange",
     };
 
     if (errorMessages[error]) {
@@ -821,7 +1030,10 @@ class BjPassAuthWidget {
     this.configManager = new ConfigManager(config);
     this.uiManager = new UIManager(this.configManager.get());
     this.urlBuilder = new OAuthUrlBuilder(this.configManager.get());
-    this.tokenValidator = new TokenValidator(this.configManager.get(), this.urlBuilder);
+    this.tokenValidator = new TokenValidator(
+      this.configManager.get(),
+      this.urlBuilder
+    );
     this.backendClient = new BackendClient(this.configManager.get());
     this.popupManager = new PopupManager();
 
@@ -846,7 +1058,10 @@ class BjPassAuthWidget {
     this.uiManager.setOnEnvironmentChange((environment) => {
       this.configManager.updateConfig({ environment });
       this.urlBuilder = new OAuthUrlBuilder(this.configManager.get());
-      this.tokenValidator = new TokenValidator(this.configManager.get(), this.urlBuilder);
+      this.tokenValidator = new TokenValidator(
+        this.configManager.get(),
+        this.urlBuilder
+      );
       this.backendClient = new BackendClient(this.configManager.get());
     });
 
@@ -855,34 +1070,94 @@ class BjPassAuthWidget {
     });
   }
 
+  // setupMessageListener() {
+  //   window.addEventListener("message", (event) => {
+  //     if (event.data.type === "bjpass-auth-response") {
+  //       this.handlePopupResponse(event.data.query);
+  //     }
+  //   });
+  // }
+
   setupMessageListener() {
     window.addEventListener("message", (event) => {
-      if (event.data.type === "bjpass-auth-response") {
-        this.handlePopupResponse(event.data.query);
+      // Vérifier l'origine du message
+      if (!this.isValidMessageOrigin(event.origin)) {
+        console.warn("Message from unauthorized origin:", event.origin);
+        return;
+      }
+
+      // Vérifier le type de message
+      if (event.data && event.data.type === "bjpass-auth-response") {
+        this.backendClient.handleBackendAuthResponse(event.data);
       }
     });
   }
+
+  isValidMessageOrigin(origin) {
+    const config = this.configManager.get();
+    const allowedOrigins = [config.backendOrigin, config.frontendOrigin];
+
+    // Permettre l'origine exacte ou wildcard
+    return allowedOrigins.some(
+      (allowed) => allowed === "*" || allowed === origin
+    );
+  }
+
+  // async startAuthFlow() {
+  //   try {
+  //     this.uiManager.setState({ isLoading: true, error: null });
+
+  //     const config = this.configManager.get();
+  //     const authData = SessionManager.generateAndStoreAuthData(config.scope);
+  //     const authUrl = await this.urlBuilder.buildAuthorizationUrl(authData);
+
+  //     console.log("Authorization URL:", authUrl);
+
+  //     this.popupManager.open(authUrl, () => {
+  //       this.uiManager.setState({ isLoading: false });
+  //       if (!SessionManager.getItem("success")) {
+  //         this.handleError(
+  //           "popup_closed",
+  //           "La fenêtre d'authentification a été fermée"
+  //         );
+  //       }
+  //     });
+  //   } catch (error) {
+  //     this.handleError("auth_flow_error", error.message);
+  //   }
+  // }
 
   async startAuthFlow() {
     try {
       this.uiManager.setState({ isLoading: true, error: null });
 
-      const config = this.configManager.get();
-      const authData = SessionManager.generateAndStoreAuthData(config.scope);
-      const authUrl = await this.urlBuilder.buildAuthorizationUrl(authData);
-
-      console.log("Authorization URL:", authUrl);
-
-      this.popupManager.open(authUrl, () => {
-        this.uiManager.setState({ isLoading: false });
-        if (!SessionManager.getItem("success")) {
-          this.handleError("popup_closed", "La fenêtre d'authentification a été fermée");
-        }
-      });
-
+      if (this.config.useBackend) {
+        // Utiliser le backend pour l'authentification
+        await this.backendClient.startBackendAuthFlow();
+      } else {
+        // Fallback vers l'ancienne méthode
+        await this.startDirectAuthFlow();
+      }
     } catch (error) {
       this.handleError("auth_flow_error", error.message);
     }
+  }
+
+  async startDirectAuthFlow() {
+    // Ancienne logique existante...
+    const config = this.configManager.get();
+    const authData = SessionManager.generateAndStoreAuthData(config.scope);
+    const authUrl = await this.urlBuilder.buildAuthorizationUrl(authData);
+
+    this.popupManager.open(authUrl, () => {
+      this.uiManager.setState({ isLoading: false });
+      if (!SessionManager.getItem("success")) {
+        this.handleError(
+          "popup_closed",
+          "La fenêtre d'authentification a été fermée"
+        );
+      }
+    });
   }
 
   async handlePopupResponse(queryParams) {
@@ -914,7 +1189,6 @@ class BjPassAuthWidget {
 
       // Exchange code for tokens
       await this.exchangeCodeForTokens(code, state);
-
     } catch (error) {
       this.handleError("callback_error", error.message);
     }
@@ -926,14 +1200,18 @@ class BjPassAuthWidget {
       let tokenData;
 
       // Use backend or direct exchange based on configuration
-      if (config.beUrl && config.beBearer) {
+      if (config.beUrl) {
         tokenData = await this.backendClient.exchangeCode(code, state);
       } else {
-        tokenData = await this.backendClient.exchangeCodeDirect(code, state, this.urlBuilder);
+        this.handleError(
+          "unsuported_grant_type_error",
+          "Type de subvention OAuth non encore pris en charge."
+        );
+        return;
       }
 
       // Validate tokens
-      await this.validateTokens(tokenData);
+      await this.validateTokens(tokenData.data);
 
       // Success
       SessionManager.clear();
@@ -942,7 +1220,6 @@ class BjPassAuthWidget {
       if (config.onSuccess) {
         config.onSuccess(tokenData);
       }
-
     } catch (error) {
       this.handleError("token_exchange_error", error.message);
     }
@@ -964,17 +1241,96 @@ class BjPassAuthWidget {
 
   handleError(errorCode, description) {
     console.error("Auth error:", errorCode, description);
-    
+
     const errorMessage = ErrorHandler.getErrorMessage(errorCode, description);
-    
+
     this.uiManager.setState({
       isLoading: false,
-      error: errorMessage
+      error: errorMessage,
     });
 
     const config = this.configManager.get();
     if (config.onError) {
       config.onError({ error: errorCode, error_description: description });
+    }
+  }
+
+  async getUserInfo() {
+    const config = this.configManager.get();
+
+    if (config.useBackend) {
+      try {
+        // Essayer de récupérer depuis le backend
+        return await this.backendClient.getUserInfoFromBackend();
+      } catch (error) {
+        console.warn(
+          "Failed to get user info from backend, falling back to session:",
+          error
+        );
+      }
+    }
+
+    // Fallback vers la session locale
+    const userData = SessionManager.getItem("user");
+    return userData ? JSON.parse(userData) : null;
+  }
+
+  async logout() {
+    const config = this.configManager.get();
+
+    if (config.useBackend) {
+      try {
+        await this.backendClient.logoutFromBackend();
+      } catch (error) {
+        console.warn("Backend logout failed:", error);
+      }
+    }
+
+    // Nettoyer la session locale
+    SessionManager.clear();
+
+    // Mettre à jour l'UI
+    this.uiManager.setState({ isLoading: false, error: null });
+
+    // Appeler le callback de déconnexion
+    if (config.onLogout) {
+      config.onLogout();
+    }
+  }
+
+  async refreshToken() {
+    const config = this.configManager.get();
+
+    if (!config.useBackend) {
+      throw new Error("Token refresh not supported in direct mode");
+    }
+
+    try {
+      const refreshUrl = new URL(
+        config.backendEndpoints.refresh,
+        config.backendUrl
+      );
+
+      const response = await fetch(refreshUrl.toString(), {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Token refresh failed: ${response.status}`);
+      }
+
+      const refreshData = await response.json();
+      console.log("Token refreshed successfully");
+
+      return refreshData.token_info;
+    } catch (error) {
+      console.error("Token refresh failed:", error);
+      throw error;
     }
   }
 
@@ -998,7 +1354,10 @@ class BjPassAuthWidget {
     this.configManager.updateConfig(newConfig);
     // Refresh components that depend on config
     this.urlBuilder = new OAuthUrlBuilder(this.configManager.get());
-    this.tokenValidator = new TokenValidator(this.configManager.get(), this.urlBuilder);
+    this.tokenValidator = new TokenValidator(
+      this.configManager.get(),
+      this.urlBuilder
+    );
     this.backendClient = new BackendClient(this.configManager.get());
   }
 }
@@ -1016,7 +1375,7 @@ if (typeof window !== "undefined") {
     TokenValidator,
     BackendClient,
     PopupManager,
-    ErrorHandler
+    ErrorHandler,
   };
 }
 
@@ -1047,7 +1406,7 @@ class BjPassWidgetFactory {
   }
 
   static createMultiple(configs) {
-    return configs.map(config => new BjPassAuthWidget(config));
+    return configs.map((config) => new BjPassAuthWidget(config));
   }
 
   static createWithTheme(theme, config = {}) {
@@ -1055,24 +1414,24 @@ class BjPassWidgetFactory {
       default: {
         primaryColor: "#0066cc",
         backgroundColor: "#ffffff",
-        borderColor: "#ddd"
+        borderColor: "#ddd",
       },
       dark: {
         primaryColor: "#4da6ff",
         backgroundColor: "#2d2d2d",
         borderColor: "#555",
-        textColor: "#ffffff"
+        textColor: "#ffffff",
       },
       modern: {
         primaryColor: "#6366f1",
         backgroundColor: "#fafafa",
-        borderColor: "#e5e7eb"
+        borderColor: "#e5e7eb",
       },
       minimal: {
         primaryColor: "#000000",
         backgroundColor: "#ffffff",
-        borderColor: "transparent"
-      }
+        borderColor: "transparent",
+      },
     };
 
     const themeConfig = themes[theme] || themes.default;
@@ -1081,8 +1440,8 @@ class BjPassWidgetFactory {
       ui: {
         ...config.ui,
         theme,
-        ...themeConfig
-      }
+        ...themeConfig,
+      },
     });
   }
 }
@@ -1098,7 +1457,7 @@ class PluginManager {
   }
 
   register(name, plugin) {
-    if (typeof plugin.init === 'function') {
+    if (typeof plugin.init === "function") {
       this.plugins.set(name, plugin);
       plugin.init(this.widget);
     }
@@ -1106,7 +1465,7 @@ class PluginManager {
 
   unregister(name) {
     const plugin = this.plugins.get(name);
-    if (plugin && typeof plugin.destroy === 'function') {
+    if (plugin && typeof plugin.destroy === "function") {
       plugin.destroy();
     }
     this.plugins.delete(name);
@@ -1121,7 +1480,7 @@ class PluginManager {
 
   executeHook(hookName, ...args) {
     const callbacks = this.hooks.get(hookName) || [];
-    callbacks.forEach(callback => {
+    callbacks.forEach((callback) => {
       try {
         callback(...args);
       } catch (error) {
@@ -1152,38 +1511,40 @@ class AnalyticsPlugin {
 
   setupAnalytics() {
     const originalStartAuth = this.widget.startAuthFlow.bind(this.widget);
-    const originalHandleSuccess = this.widget.exchangeCodeForTokens.bind(this.widget);
+    const originalHandleSuccess = this.widget.exchangeCodeForTokens.bind(
+      this.widget
+    );
     // const originalHandleError = this.widget.handleError.bind(this.widget);
 
     this.widget.startAuthFlow = async () => {
-      this.track('auth_started');
+      this.track("auth_started");
       return originalStartAuth();
     };
 
     this.widget.exchangeCodeForTokens = async (code, state) => {
       try {
         const result = await originalHandleSuccess(code, state);
-        this.track('auth_success');
+        this.track("auth_success");
         return result;
       } catch (error) {
-        this.track('auth_error', { error: error.message });
+        this.track("auth_error", { error: error.message });
         throw error;
       }
     };
   }
 
   track(event, data = {}) {
-    console.log('Analytics:', event, data);
-    
+    console.log("Analytics:", event, data);
+
     // Send to analytics service
-    if (typeof gtag !== 'undefined') {
-    //   gtag('event', event, {
-    //     event_category: 'bjpass_auth',
-    //     ...data
-    //   });
+    if (typeof gtag !== "undefined") {
+      //   gtag('event', event, {
+      //     event_category: 'bjpass_auth',
+      //     ...data
+      //   });
     }
 
-    if (typeof window.analytics !== 'undefined') {
+    if (typeof window.analytics !== "undefined") {
       window.analytics.track(event, data);
     }
   }
@@ -1209,8 +1570,8 @@ class DebugPlugin {
   }
 
   addDebugPanel() {
-    const debugPanel = document.createElement('div');
-    debugPanel.id = 'bjpass-debug-panel';
+    const debugPanel = document.createElement("div");
+    debugPanel.id = "bjpass-debug-panel";
     debugPanel.style.cssText = `
       position: fixed;
       top: 10px;
@@ -1228,23 +1589,23 @@ class DebugPlugin {
       display: none;
     `;
 
-    const header = document.createElement('div');
+    const header = document.createElement("div");
     header.innerHTML = `
       <strong>BjPass Debug Panel</strong>
       <button onclick="this.parentElement.parentElement.style.display='none'" 
               style="float:right;background:none;border:none;color:#fff;cursor:pointer;">×</button>
     `;
 
-    const logs = document.createElement('div');
-    logs.id = 'bjpass-debug-logs';
+    const logs = document.createElement("div");
+    logs.id = "bjpass-debug-logs";
 
     debugPanel.appendChild(header);
     debugPanel.appendChild(logs);
     document.body.appendChild(debugPanel);
 
     // Toggle button
-    const toggleBtn = document.createElement('button');
-    toggleBtn.textContent = '🐛';
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = "🐛";
     toggleBtn.style.cssText = `
       position: fixed;
       top: 10px;
@@ -1258,7 +1619,8 @@ class DebugPlugin {
       cursor: pointer;
     `;
     toggleBtn.onclick = () => {
-      debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+      debugPanel.style.display =
+        debugPanel.style.display === "none" ? "block" : "none";
     };
     document.body.appendChild(toggleBtn);
 
@@ -1267,21 +1629,28 @@ class DebugPlugin {
   }
 
   interceptMethods() {
-    const methods = ['startAuthFlow', 'handlePopupResponse', 'exchangeCodeForTokens', 'handleError'];
-    
-    methods.forEach(methodName => {
+    const methods = [
+      "startAuthFlow",
+      "handlePopupResponse",
+      "exchangeCodeForTokens",
+      "handleError",
+    ];
+
+    methods.forEach((methodName) => {
       const originalMethod = this.widget[methodName].bind(this.widget);
       this.widget[methodName] = (...args) => {
         this.log(`${methodName} called with:`, args);
         const result = originalMethod(...args);
         if (result instanceof Promise) {
-          return result.then(res => {
-            this.log(`${methodName} resolved:`, res);
-            return res;
-          }).catch(err => {
-            this.log(`${methodName} rejected:`, err);
-            throw err;
-          });
+          return result
+            .then((res) => {
+              this.log(`${methodName} resolved:`, res);
+              return res;
+            })
+            .catch((err) => {
+              this.log(`${methodName} rejected:`, err);
+              throw err;
+            });
         }
         this.log(`${methodName} returned:`, result);
         return result;
@@ -1291,19 +1660,19 @@ class DebugPlugin {
 
   log(message, data) {
     const timestamp = new Date().toLocaleTimeString();
-    const logEntry = document.createElement('div');
-    logEntry.style.marginBottom = '5px';
+    const logEntry = document.createElement("div");
+    logEntry.style.marginBottom = "5px";
     logEntry.innerHTML = `
       <span style="color:#888">[${timestamp}]</span> 
       ${message} 
-      ${data ? `<pre style="margin:5px 0;color:#ff0;">${JSON.stringify(data, null, 2)}</pre>` : ''}
+      ${data ? `<pre style="margin:5px 0;color:#ff0;">${JSON.stringify(data, null, 2)}</pre>` : ""}
     `;
-    
+
     if (this.debugLogs) {
       this.debugLogs.appendChild(logEntry);
       this.debugLogs.scrollTop = this.debugLogs.scrollHeight;
     }
-    
+
     console.log(`[BjPass Debug] ${message}`, data);
   }
 
@@ -1324,14 +1693,18 @@ class RetryPlugin {
   }
 
   setupRetryLogic() {
-    const originalExchangeCode = this.widget.exchangeCodeForTokens.bind(this.widget);
-    
+    const originalExchangeCode = this.widget.exchangeCodeForTokens.bind(
+      this.widget
+    );
+
     this.widget.exchangeCodeForTokens = async (code, state, attempt = 1) => {
       try {
         return await originalExchangeCode(code, state);
       } catch (error) {
         if (attempt < this.maxRetries && this.shouldRetry(error)) {
-          console.log(`Retry attempt ${attempt}/${this.maxRetries} after ${this.retryDelay}ms`);
+          console.log(
+            `Retry attempt ${attempt}/${this.maxRetries} after ${this.retryDelay}ms`
+          );
           await this.delay(this.retryDelay * attempt);
           return this.widget.exchangeCodeForTokens(code, state, attempt + 1);
         }
@@ -1341,15 +1714,22 @@ class RetryPlugin {
   }
 
   shouldRetry(error) {
-    const retryableErrors = ['network', 'timeout', 'server_error', '503', '502', '500'];
-    return retryableErrors.some(errType => 
-      error.message.toLowerCase().includes(errType) || 
-      error.code === errType
+    const retryableErrors = [
+      "network",
+      "timeout",
+      "server_error",
+      "503",
+      "502",
+      "500",
+    ];
+    return retryableErrors.some(
+      (errType) =>
+        error.message.toLowerCase().includes(errType) || error.code === errType
     );
   }
 
   delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   destroy() {
@@ -1367,18 +1747,18 @@ class EnhancedBjPassAuthWidget extends BjPassAuthWidget {
 
   setupBuiltinPlugins() {
     const config = this.getConfig();
-    
+
     // Auto-enable plugins based on config
     if (config.analytics) {
-      this.pluginManager.register('analytics', new AnalyticsPlugin());
+      this.pluginManager.register("analytics", new AnalyticsPlugin());
     }
-    
+
     if (config.debug) {
-      this.pluginManager.register('debug', new DebugPlugin());
+      this.pluginManager.register("debug", new DebugPlugin());
     }
-    
+
     if (config.maxRetries > 0) {
-      this.pluginManager.register('retry', new RetryPlugin());
+      this.pluginManager.register("retry", new RetryPlugin());
     }
   }
 
@@ -1409,36 +1789,36 @@ class EnhancedBjPassAuthWidget extends BjPassAuthWidget {
 
   // Enhanced methods with hooks
   async startAuthFlow() {
-    this.executeHook('beforeAuthStart');
+    this.executeHook("beforeAuthStart");
     try {
       const result = await super.startAuthFlow();
-      this.executeHook('afterAuthStart', result);
+      this.executeHook("afterAuthStart", result);
       return result;
     } catch (error) {
-      this.executeHook('authStartError', error);
+      this.executeHook("authStartError", error);
       throw error;
     }
   }
 
   async exchangeCodeForTokens(code, state) {
-    this.executeHook('beforeTokenExchange', code, state);
+    this.executeHook("beforeTokenExchange", code, state);
     try {
       const result = await super.exchangeCodeForTokens(code, state);
-      this.executeHook('afterTokenExchange', result);
+      this.executeHook("afterTokenExchange", result);
       return result;
     } catch (error) {
-      this.executeHook('tokenExchangeError', error);
+      this.executeHook("tokenExchangeError", error);
       throw error;
     }
   }
 
   destroy() {
-    this.executeHook('beforeDestroy');
-    this.pluginManager.listPlugins().forEach(name => {
+    this.executeHook("beforeDestroy");
+    this.pluginManager.listPlugins().forEach((name) => {
       this.pluginManager.unregister(name);
     });
     super.destroy();
-    this.executeHook('afterDestroy');
+    this.executeHook("afterDestroy");
   }
 }
 
@@ -1450,7 +1830,7 @@ if (typeof window !== "undefined") {
   window.BjPassAuthWidget = BjPassAuthWidget;
   window.EnhancedBjPassAuthWidget = EnhancedBjPassAuthWidget;
   window.BjPassWidgetFactory = BjPassWidgetFactory;
-  
+
   // Component exports
   window.BjPassComponents = {
     ConfigManager,
@@ -1461,14 +1841,14 @@ if (typeof window !== "undefined") {
     BackendClient,
     PopupManager,
     ErrorHandler,
-    PluginManager
+    PluginManager,
   };
 
   // Plugin exports
   window.BjPassPlugins = {
     AnalyticsPlugin,
     DebugPlugin,
-    RetryPlugin
+    RetryPlugin,
   };
 
   // Utility function for quick setup
@@ -1478,11 +1858,11 @@ if (typeof window !== "undefined") {
 }
 
 // Export par défaut pour ES modules et UMD
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = BjPassAuthWidget;
-} else if (typeof define === 'function' && define.amd) {
+} else if (typeof define === "function" && define.amd) {
   define(() => BjPassAuthWidget);
-} else if (typeof exports !== 'undefined') {
+} else if (typeof exports !== "undefined") {
   exports.BjPassAuthWidget = BjPassAuthWidget;
 }
 
