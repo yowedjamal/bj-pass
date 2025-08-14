@@ -1103,30 +1103,6 @@ class BjPassAuthWidget {
     );
   }
 
-  // async startAuthFlow() {
-  //   try {
-  //     this.uiManager.setState({ isLoading: true, error: null });
-
-  //     const config = this.configManager.get();
-  //     const authData = SessionManager.generateAndStoreAuthData(config.scope);
-  //     const authUrl = await this.urlBuilder.buildAuthorizationUrl(authData);
-
-  //     console.log("Authorization URL:", authUrl);
-
-  //     this.popupManager.open(authUrl, () => {
-  //       this.uiManager.setState({ isLoading: false });
-  //       if (!SessionManager.getItem("success")) {
-  //         this.handleError(
-  //           "popup_closed",
-  //           "La fenêtre d'authentification a été fermée"
-  //         );
-  //       }
-  //     });
-  //   } catch (error) {
-  //     this.handleError("auth_flow_error", error.message);
-  //   }
-  // }
-
   async startAuthFlow() {
     try {
     const config = this.configManager.get();
