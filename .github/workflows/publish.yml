@@ -39,7 +39,7 @@ jobs:
         sleep 60
         
         # Test if the package is available on jsDelivr
-        curl -f "https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@${{ github.event.release.tag_name }}" || {
+        curl -f "https://cdn.jsdelivr.net/npm/bj-pass-auth-widget@${{ github.event.release.tag_name }}/dist/bj-pass-auth-widget.min.js" || {
           echo "Package not yet available on jsDelivr"
           exit 1
         }
