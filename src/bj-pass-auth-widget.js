@@ -28,7 +28,6 @@ class ConfigManager {
       authServer: "",
       scope: "openid profile",
       redirectUri: "http://127.0.0.1:5500/examples/redirect.html",
-      // redirectUri: "https://bj-pass.vercel.app/redirect.html",
       pkce: true,
       verifyAccessToken: false,
       tokenVerificationScopes: ["urn:safelayer:eidas:oauth:token:introspect"],
