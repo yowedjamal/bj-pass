@@ -1,24 +1,21 @@
 {
-    "title": "bj-pass Authentication Widget",
-    "description": "Documentation complète du widget d'authentification bj-pass",
-    "author": "yowedjamal",
-    "language": "fr",
-    "structure": {
-        "readme": "README.md",
-        "summary": "SUMMARY.md"
-    },
-      "plugins": [
-    "highlight",
-    "theme-default"
-  ],
-    "pluginsConfig": {
-        "highlight": {
-            "theme": "github"
-        }
-    },
-    "variables": {
-        "version": "2.0.0",
-        "github": "https://github.com/yowedjamal/bj-pass",
-        "email": "yowedjamal@gmail.com"
+  "title": "bj-pass Authentication Widget",
+  "description": "Documentation complète du widget d'authentification bj-pass",
+  "author": "yowedjamal",
+  "language": "fr",
+  "structure": {
+    "readme": "README.md",
+    "summary": "SUMMARY.md"
+  },
+  "plugins": ["highlight", "theme-default"],
+  "pluginsConfig": {
+    "highlight": {
+      "theme": "github"
     }
+  },
+  "variables": {
+    "version": "2.0.0",
+    "github": "https://github.com/yowedjamal/bj-pass",
+    "email": "yowedjamal@gmail.com"
+  }
 }
