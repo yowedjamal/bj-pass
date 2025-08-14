@@ -77,6 +77,43 @@ const widget = new BjPassAuthWidget({
 </div>
 ```
 
+## 🎯 Support des Frameworks
+
+### React/Next.js
+```typescript
+import { BjPassWidget, useBjPassAuth } from 'bj-pass-auth-widget';
+
+// Composant avec hook
+function AuthComponent() {
+  const { isAuthenticated, startAuth, logout } = useBjPassAuth(config);
+  // ...
+}
+```
+
+### Angular
+```typescript
+import { BjPassAuthModule } from 'bj-pass-auth-widget';
+
+@NgModule({
+  imports: [BjPassAuthModule.forRoot()]
+})
+export class AppModule { }
+
+// Composant
+@Component({
+  template: '<bj-pass-widget [config]="authConfig"></bj-pass-widget>'
+})
+export class AuthComponent { }
+```
+
+**📚 Documentation Angular complète :** [ANGULAR_README.md](ANGULAR_README.md) | [ANGULAR_USAGE.md](ANGULAR_USAGE.md)
+
+### Vanilla JavaScript
+```javascript
+const widget = new BjPassAuthWidget(config);
+widget.startAuthFlow();
+```
+
 ## 🛠️ Développement
 
 ### Prérequis
@@ -121,7 +158,11 @@ npm run format
 ```
 .
 ├── src/
-│   └── bj-pass-auth-widget.js    # Code source principal
+│   ├── bj-pass-auth-widget.js    # Code source principal
+│   ├── wrappers/
+│   │   ├── ReactWrapper.tsx      # Support React
+│   │   └── AngularWrapper.ts     # Support Angular
+│   └── types/                    # Types TypeScript
 ├── dist/                         # Fichiers construits (générés)
 ├── docs/                         # Documentation GitBook
 ├── examples/                     # Exemples d'utilisation
@@ -205,6 +246,7 @@ const widget = new BjPassAuthWidget({
 - **Navigateurs** : Chrome 60+, Firefox 55+, Safari 12+, Edge 79+
 - **Environnements** : Browser, Node.js, Webpack, Vite
 - **Frameworks** : React, Vue.js, Angular, vanilla JS
+- **Formats** : UMD, ESM, CommonJS
 
 ## 📚 Documentation complète
 
@@ -214,6 +256,11 @@ Consultez la [documentation complète](docs/) pour plus de détails sur :
 - Gestion des erreurs
 - Intégration avec des frameworks
 - Déploiement
+
+**📖 Guides spécifiques :**
+- [Guide Angular](ANGULAR_README.md) - Support complet Angular
+- [Guide React/Next.js](NEXTJS_USAGE.md) - Intégration React/Next.js
+- [Guide de déploiement](DEPLOYMENT.md) - Déploiement et configuration
 
 ## 🤝 Contribution
 
