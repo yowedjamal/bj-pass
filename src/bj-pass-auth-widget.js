@@ -789,7 +789,7 @@ class BackendClient {
       this.uiManager.setState({ isLoading: false, error: null });
 
       // Appeler le callback de succès
-      const config = this.config.get();
+      const config = this.config;
       if (config.onSuccess) {
         config.onSuccess({
           user: data.user,
@@ -816,7 +816,7 @@ class BackendClient {
     );
 
     // Appeler le callback d'erreur
-    const config = this.config.get();
+    const config = this.config;
     if (config.onError) {
       config.onError({
         error: data.error,
@@ -828,7 +828,7 @@ class BackendClient {
 
   async verifyBackendStatus() {
     try {
-      const config = this.config.get();
+      const config = this.config;
       const statusUrl = new URL(
         config.backendEndpoints.status,
         config.backendUrl
@@ -867,7 +867,7 @@ class BackendClient {
   }
 
   async startBackendAuthFlow() {
-    const config = this.config.get();
+    const config = this.config;
 
     if (!config.backendUrl) {
       throw new Error("Backend URL not configured");
@@ -894,7 +894,7 @@ class BackendClient {
   }
 
   async getUserInfoFromBackend() {
-    const config = this.config.get();
+    const config = this.config;
     const userUrl = new URL(config.backendEndpoints.user, config.backendUrl);
 
     const response = await fetch(userUrl.toString(), {
@@ -915,7 +915,7 @@ class BackendClient {
   }
 
   async logoutFromBackend() {
-    const config = this.config.get();
+    const config = this.config;
     const logoutUrl = new URL(
       config.backendEndpoints.logout,
       config.backendUrl
