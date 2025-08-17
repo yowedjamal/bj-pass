@@ -20,8 +20,25 @@ import { default as default_0, useCallback, useEffect, useRef, useState } from "
 /******/ 	__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ })();
 /******/ 
+/******/ /* webpack/runtime/make namespace object */
+/******/ (() => {
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = (exports) => {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/ })();
+/******/ 
 /************************************************************************/
 var __webpack_exports__ = {};
+
+// NAMESPACE OBJECT: ./src/bj-pass-auth-widget-types.ts
+var bj_pass_auth_widget_types_namespaceObject = {};
+__webpack_require__.r(bj_pass_auth_widget_types_namespaceObject);
+
+;// ./src/bj-pass-auth-widget-types.ts
 
 ;// external "react"
 
@@ -734,6 +751,9 @@ class BjPassAuthModule {
   }
 }
 ;// ./src/index.ts
+// Main exports
+
+
 // Export types and declarations
 
 
