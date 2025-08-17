@@ -1,3 +1,6 @@
+// Main exports
+export { BjPassAuthWidget, EnhancedBjPassAuthWidget, BjPassWidgetFactory, createBjPassWidget } from './bj-pass-auth-widget-types';
+
 // Export types and declarations
 export * from './bj-pass-auth-widget-types';
 
