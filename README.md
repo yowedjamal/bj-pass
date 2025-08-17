@@ -274,6 +274,15 @@ Consultez la [documentation complète](docs/) pour plus de détails sur :
 
 MIT License - voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
+## 🚨 Dépannage TypeScript
+
+Si vous rencontrez des problèmes avec les types TypeScript, consultez le [guide de dépannage complet](TYPESCRIPT_TROUBLESHOOTING.md) qui couvre :
+
+- Erreurs de déclaration de module
+- Problèmes avec les composants React/Angular
+- Configuration TypeScript
+- Vérification des types
+
 ## 📞 Support
 
 - **Email** : yowedjamal@gmail.com

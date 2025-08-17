@@ -67,52 +67,7 @@ export interface HookCallback {
   (widget: any, ...args: any[]): void | Promise<void>;
 }
 
-export class BjPassAuthWidget {
-  constructor(config: BjPassConfig);
-  
-  // Configuration
-  updateConfig(newConfig: Partial<BjPassConfig>): void;
-  getConfig(): BjPassConfig;
-  
-  // Authentication
-  startAuthFlow(): Promise<AuthResult>;
-  exchangeCodeForTokens(code: string, state: string): Promise<TokenInfo>;
-  refreshTokens(): Promise<TokenInfo>;
-  logout(): Promise<void>;
-  
-  // User management
-  getUserInfo(): Promise<UserInfo>;
-  isAuthenticated(): boolean;
-  
-  // Session management
-  getTokens(): TokenInfo | null;
-  clearTokens(): void;
-  
-  // UI management
-  render(container?: string | HTMLElement): void;
-  destroy(): void;
-  
-  // Plugin system
-  registerPlugin(plugin: Plugin): this;
-  unregisterPlugin(name: string): this;
-  getPlugin(name: string): Plugin | undefined;
-  
-  // Hooks
-  addHook(hookName: string, callback: HookCallback): this;
-  executeHook(hookName: string, ...args: any[]): void;
-}
 
-export class EnhancedBjPassAuthWidget extends BjPassAuthWidget {
-  constructor(config: BjPassConfig);
-}
-
-export class BjPassWidgetFactory {
-  static create(config: BjPassConfig): BjPassAuthWidget;
-  static createEnhanced(config: BjPassConfig): EnhancedBjPassAuthWidget;
-}
-
-// Utility function
-export function createBjPassWidget(config: BjPassConfig): BjPassAuthWidget;
 
 // Global types for browser usage
 declare global {
@@ -133,9 +88,27 @@ declare global {
     };
     BjPassPlugins: {
       AnalyticsPlugin: any;
-      DebugPlugin: any;
       RetryPlugin: any;
     };
     createBjPassWidget: typeof createBjPassWidget;
   }
+}
+
+// Module declarations for different import methods
+declare module 'bj-pass-auth-widget' {
+  export * from './types';
+  export { BjPassAuthWidget, EnhancedBjPassAuthWidget, BjPassWidgetFactory, createBjPassWidget } from './bj-pass-auth-widget';
+  export default BjPassAuthWidget;
+}
+
+declare module 'bj-pass-auth-widget/umd' {
+  export * from './types';
+  export { BjPassAuthWidget, EnhancedBjPassAuthWidget, BjPassWidgetFactory, createBjPassWidget } from './bj-pass-auth-widget';
+  export default BjPassAuthWidget;
+}
+
+declare module 'bj-pass-auth-widget/dist/bj-pass-auth-widget.min.js' {
+  export * from './types';
+  export { BjPassAuthWidget, EnhancedBjPassAuthWidget, BjPassWidgetFactory, createBjPassWidget } from './bj-pass-auth-widget';
+  export default BjPassAuthWidget;
 }

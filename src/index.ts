@@ -1,5 +1,5 @@
-// Main exports
-export { default as BjPassAuthWidget } from './bj-pass-auth-widget.js';
+// Export types and declarations
+export * from './bj-pass-auth-widget-types';
 
 // Types
 export type {

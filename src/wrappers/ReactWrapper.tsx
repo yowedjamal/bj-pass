@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { BjPassAuthWidget, BjPassConfig, AuthResult, UserInfo, TokenInfo } from '../types';
+import { BjPassConfig, AuthResult, UserInfo, TokenInfo } from '../types';
+import { BjPassAuthWidget } from '../bj-pass-auth-widget-types';
 
 export interface BjPassWidgetProps {
   config: BjPassConfig;
