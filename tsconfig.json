@@ -16,6 +16,6 @@
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*", "wrappers"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
